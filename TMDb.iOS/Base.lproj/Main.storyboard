@@ -59,11 +59,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="whw-ig-VWi">
                                 <rect key="frame" x="0.0" y="132" width="375" height="486"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="nTp-FJ-vsQ">
-                                    <rect key="frame" x="0.0" y="198" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="movieCell" rowHeight="170" id="ro6-AV-q1F" customClass="MovieCell" customModule="TMDb_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="170"/>
@@ -105,11 +100,16 @@
                         <viewLayoutGuide key="safeArea" id="roy-jr-SaJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Фильмы" id="l09-is-lj7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="j9L-9t-SN0"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="j9L-9t-SN0">
+                            <connections>
+                                <action selector="searchBtnPressed:" destination="SKY-03-QEI" id="jpT-YH-nou"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="segmentedControl" destination="ggj-f9-wPe" id="pRv-uG-lLD"/>
                         <outlet property="tableView" destination="whw-ig-VWi" id="NRB-nA-yNd"/>
+                        <outlet property="tapView" destination="bnF-ze-sgL" id="HvF-iM-QjD"/>
                         <outlet property="view" destination="whw-ig-VWi" id="OxX-pI-iC0"/>
                     </connections>
                 </viewController>
@@ -161,7 +161,7 @@
         <!--Movie DetailVC-->
         <scene sceneID="wY4-s8-qaw">
             <objects>
-                <viewController id="t9Y-UY-h2u" customClass="MovieDetailVC" customModule="TMDb_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailVC" id="t9Y-UY-h2u" customClass="MovieDetailVC" customModule="TMDb_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bhs-Iw-bQV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

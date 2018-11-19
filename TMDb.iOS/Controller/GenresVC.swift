@@ -31,14 +31,7 @@ class GenresVC: UIViewController {
         self.tableView.register(nib, forCellReuseIdentifier: "genreCell")
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toMoviesByGenre" {
-            guard let vc = segue.destination as? MoviesByGenresVC else {return}
-            let genre =  sender as? Genre
-            vc.genreId = genre?.id
-        }
-       
-    }
+    
 
     //MARK: Private functions
     private func loadGenres() {
@@ -88,7 +81,7 @@ extension GenresVC: UITableViewDataSource, UITableViewDelegate {
         let index = IndexPath(row: indexPath.row, section: 0)
         tableView.reloadRows(at: [index], with: .none)
         tableView.selectRow(at: index, animated: false, scrollPosition: .none)
-        performSegue(withIdentifier: "toMoviesByGenre", sender: genre)
+    
     }
     
     
