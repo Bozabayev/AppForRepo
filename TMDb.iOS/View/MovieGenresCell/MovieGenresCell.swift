@@ -22,6 +22,7 @@ class MovieGenresCell: UICollectionViewCell {
         // Initialization code
         posterImg.layer.cornerRadius = 7
         posterImg.clipsToBounds = true
+
     }
     
     
@@ -29,8 +30,8 @@ class MovieGenresCell: UICollectionViewCell {
     
     func configureCell(movie: Movie ) {
         
-        let title = movie.title
-        posterTitle.text = title
+        guard let title = movie.title else {return}
+        posterTitle.text = movie.title
         
         guard let poster_path = movie.poster_path else {return}
         let URL_IMAGE = "https://image.tmdb.org/t/p/w500/\(String(describing: (poster_path)))"

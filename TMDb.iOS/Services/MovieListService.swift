@@ -19,9 +19,11 @@ let api_key = "02da584cad2ae31b564d940582770598"
         
         case genreList
         
-        case discoverGenreList(genre_id: Int)
+        case discoverGenreList(genre_id: Int, page: Int)
         
         case searchMovie(query: String)
+        
+        case similarMovies(movie_id: Int)
 
     }
     
@@ -47,13 +49,15 @@ extension MovieListService: TargetType {
             case .searchMovie:
                 return "search/movie"
 
+            case .similarMovies(let movie_id):
+                return "movie/\(movie_id)/similar"
             }
         }
         
         
         var method: Moya.Method {
             switch  self {
-            case .popularList, .upcomingList, .genreList, .discoverGenreList, .searchMovie :
+            case .popularList, .upcomingList, .genreList, .discoverGenreList, .searchMovie, .similarMovies :
                 return .get
             }
         }
@@ -71,12 +75,14 @@ extension MovieListService: TargetType {
         switch self {
         case .genreList:
             return .requestParameters(parameters: ["api_key" : api_key ], encoding: URLEncoding.default)
-        case .discoverGenreList(let genre_id):
-            return .requestParameters(parameters: ["api_key" : api_key, "with_genres" : genre_id], encoding: URLEncoding.default)
+        case .discoverGenreList(let genre_id, let page):
+            return .requestParameters(parameters: ["api_key" : api_key, "with_genres" : genre_id, "page" : page], encoding: URLEncoding.default)
         case .searchMovie(let query):
             return .requestParameters(parameters: ["api_key" : api_key, "query" : query], encoding: URLEncoding.default)
         case .upcomingList(let page), .popularList(let page):
             return .requestParameters(parameters: ["api_key" : api_key,"page" : page ], encoding: URLEncoding.default)
+        case .similarMovies(let movie_id):
+            return .requestParameters(parameters: ["api_key" : api_key, "movie_id" : movie_id, "page" : pageNumberOfSimilarMovies as Any ], encoding: URLEncoding.default)
         }
     }
     

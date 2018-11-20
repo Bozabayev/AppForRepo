@@ -21,12 +21,14 @@ class FilmsVC: UIViewController {
         case searching
     }
     
-    @IBOutlet var tapView: UIView!
+
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+   
     @IBOutlet weak var tableView: UITableView!
-    
     //MARK: Private variables
+    fileprivate var pageNumberOfPopular : Int? = 1
+    fileprivate var pageNumberOfUpcoming : Int? = 1
     fileprivate var popularMovies = [Movie]()
     fileprivate var upcomingMovies = [Movie]()
     fileprivate var searchingMovies = [Movie]()
@@ -52,7 +54,7 @@ class FilmsVC: UIViewController {
         loadUpcomingMovies()
         self.tableView.register(nib, forCellReuseIdentifier: "movieCell")
         self.tableView.rowHeight = 170.0
-        movieType = .popular
+        
     }
     
     @IBAction func segmentControl(_ sender: Any) {
@@ -62,7 +64,7 @@ class FilmsVC: UIViewController {
         case 1:
             movieType = .upcoming
         default:
-            break
+            movieType = .popular
         }
     }
     @IBAction func searchBtnPressed(_ sender: Any) {
@@ -96,7 +98,6 @@ class FilmsVC: UIViewController {
     }
     
    @objc private func loadPopularMovies() {
-        movieType = .popular
         guard let page = pageNumberOfPopular else {return}
         print(page)
         provider.request(.popularList(page: page)) { [weak self](result) in
@@ -104,17 +105,10 @@ class FilmsVC: UIViewController {
             switch result {
             case .success(let response):
                 do {
-                    if page == 1 {
                     let jsonData = try response.mapJSON() as! [String: Any]
                     let array = jsonData["results"] as! [[String: Any]]
-                    strongSelf.popularMovies = array.map({Movie(JSON: $0)!})
+                    strongSelf.popularMovies += array.map({Movie(JSON: $0)!})
                     strongSelf.tableView.reloadData()
-                    } else {
-                        let jsonData = try response.mapJSON() as! [String: Any]
-                        let array = jsonData["results"] as! [[String: Any]]
-                        strongSelf.popularMovies.append(contentsOf: array.map({Movie(JSON: $0)!}))
-                        strongSelf.tableView.reloadData()
-                    }
                 } catch {
                     print("Mapping Error")
                 }
@@ -125,24 +119,16 @@ class FilmsVC: UIViewController {
     }
     
   @objc  private func loadUpcomingMovies() {
-        movieType = .upcoming
         guard let page = pageNumberOfUpcoming else {return}
         provider.request(.upcomingList(page: page)) { [weak self](result) in
             guard let strongSelf = self else {return}
             switch result {
             case .success(let response):
                 do {
-                    if page == 1 {
                     let jsonData = try response.mapJSON() as! [String:Any]
                     let array = jsonData["results"] as! [[String: Any]]
-                    strongSelf.upcomingMovies = array.map({Movie(JSON: $0)!})
+                    strongSelf.upcomingMovies += array.map({Movie(JSON: $0)!})
                     strongSelf.tableView.reloadData()
-                    } else {
-                        let jsonData = try response.mapJSON() as! [String:Any]
-                        let array = jsonData["results"] as! [[String: Any]]
-                        strongSelf.upcomingMovies.append(contentsOf: array.map({Movie(JSON: $0)!}))
-                        strongSelf.tableView.reloadData()
-                    }
                 } catch {
                     print("Mapping Error")
                 }
@@ -156,6 +142,7 @@ class FilmsVC: UIViewController {
 }
 
 extension FilmsVC: UITableViewDataSource, UITableViewDelegate {
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if movieType == .popular {
@@ -173,13 +160,16 @@ extension FilmsVC: UITableViewDataSource, UITableViewDelegate {
    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == popularMovies.count - 6 {
+        if movieType == .popular && popularMovies.count ==  indexPath.row + 1   {
             pageNumberOfPopular! += 1
-            print(pageNumberOfPopular)
             loadPopularMovies()
         }
-
-
+        if movieType == .upcoming && upcomingMovies.count ==  indexPath.row + 1   {
+            pageNumberOfUpcoming! += 1
+            loadUpcomingMovies()
+        }
+        
+        
         if  let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell") as? MovieCell {
             if movieType == .popular {
                 movie = popularMovies[indexPath.row]
@@ -196,6 +186,8 @@ extension FilmsVC: UITableViewDataSource, UITableViewDelegate {
         } else {
             return UITableViewCell()
         }
+        
+       
         
     }
     
@@ -221,19 +213,6 @@ extension FilmsVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-    
-    
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if (popularMovies.count - indexPath.row) == 4 && movieType == .popular {
-//            pageNumberOfPopular! += 1
-//            loadPopularMovies()
-//
-//        }
-//        if (upcomingMovies.count - indexPath.row) == 1 && movieType == .upcoming {
-//            pageNumberOfUpcoming = pageNumberOfUpcoming! + 1
-//            loadUpcomingMovies()
-//        }
-//    }
     
     
 }

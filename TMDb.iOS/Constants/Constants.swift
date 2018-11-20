@@ -12,5 +12,4 @@ let URL_MOVIE = "https://api.themoviedb.org/3/movie/"
 let URL_GENRES = "https://api.themoviedb.org/3/genre/movie/list?language=en-US"
 let URL_POPULAR_MOVIES = "https://api.themoviedb.org/3/movie/popular"
 
-var pageNumberOfPopular : Int? = 1
-var pageNumberOfUpcoming : Int? = 1
+

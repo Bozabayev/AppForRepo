@@ -9,11 +9,13 @@
 import UIKit
 import Moya
 
+var genreId : Int?
+var genreName : String?
 
 class MoviesByGenresVC: UIViewController {
 
     
-    var genreId : Int?
+    var pageNumberOfMoviesByGenre : Int? = 1
     fileprivate var movies = [Movie]()
     fileprivate var selectedMovie : Movie?
     fileprivate var provider = MoyaProvider<MovieListService>()
@@ -26,21 +28,24 @@ class MoviesByGenresVC: UIViewController {
         collectionView.dataSource = self
         self.collectionView.register(nib, forCellWithReuseIdentifier: "movieGenresCell")
         loadMoviesByGenreId()
+        navigationItem.title = genreName
+    
+
         // Do any additional setup after loading the view.
     }
     
-    private func loadMoviesByGenreId(){
+    private func loadMoviesByGenreId() {
         guard let id = genreId else {return}
-        provider.request(.discoverGenreList(genre_id: id)) { [weak self](result) in
+        guard let page = pageNumberOfMoviesByGenre else {return}
+        provider.request(.discoverGenreList(genre_id: id, page: page)) { [weak self](result) in
             guard let strongSelf = self else {return}
             switch result {
             case .success(let response):
                 do {
                     let jsonData = try response.mapJSON() as! [String: Any]
                     let array = jsonData["results"] as! [[String: Any]]
-                    strongSelf.movies = array.map({Movie(JSON: $0)!})
+                    strongSelf.movies += array.map({Movie(JSON: $0)!})
                     strongSelf.collectionView.reloadData()
-                    print(array)
                 } catch {
                     print("error")
                 }
@@ -59,6 +64,10 @@ extension MoviesByGenresVC: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if movies.count == indexPath.row + 2 {
+            pageNumberOfMoviesByGenre! += 1
+            loadMoviesByGenreId()
+        }
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieGenresCell", for: indexPath) as? MovieGenresCell {
             let movie = self.movies[indexPath.row]
             cell.configureCell(movie: movie)
@@ -66,6 +75,7 @@ extension MoviesByGenresVC: UICollectionViewDelegate, UICollectionViewDataSource
         } else{
         return UICollectionViewCell()
     }
+        
     
     
     }

@@ -77,11 +77,15 @@ extension GenresVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let genre = self.genres[indexPath.row]
-        self.selectedGenre = genre
+        selectedGenre = genre
         let index = IndexPath(row: indexPath.row, section: 0)
         tableView.reloadRows(at: [index], with: .none)
         tableView.selectRow(at: index, animated: false, scrollPosition: .none)
-    
+        genreId = selectedGenre?.id
+        genreName = selectedGenre?.name
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MoviesByGenresVC")
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
