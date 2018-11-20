@@ -24,6 +24,8 @@ let api_key = "02da584cad2ae31b564d940582770598"
         case searchMovie(query: String)
         
         case similarMovies(movie_id: Int)
+        
+        case movieCast(movie_id: Int)
 
     }
     
@@ -48,6 +50,9 @@ extension MovieListService: TargetType {
                 
             case .searchMovie:
                 return "search/movie"
+                
+            case .movieCast(let movie_id):
+                return "movie/\(movie_id)/credits"
 
             case .similarMovies(let movie_id):
                 return "movie/\(movie_id)/similar"
@@ -57,7 +62,7 @@ extension MovieListService: TargetType {
         
         var method: Moya.Method {
             switch  self {
-            case .popularList, .upcomingList, .genreList, .discoverGenreList, .searchMovie, .similarMovies :
+            case .popularList, .upcomingList, .genreList, .discoverGenreList, .searchMovie, .similarMovies, .movieCast :
                 return .get
             }
         }
@@ -83,6 +88,8 @@ extension MovieListService: TargetType {
             return .requestParameters(parameters: ["api_key" : api_key,"page" : page ], encoding: URLEncoding.default)
         case .similarMovies(let movie_id):
             return .requestParameters(parameters: ["api_key" : api_key, "movie_id" : movie_id, "page" : pageNumberOfSimilarMovies as Any ], encoding: URLEncoding.default)
+        case .movieCast(let movie_id):
+            return .requestParameters(parameters: ["api_key" : api_key, "movie_id" : movie_id], encoding: URLEncoding.default)
         }
     }
     

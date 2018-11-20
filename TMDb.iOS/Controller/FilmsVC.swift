@@ -204,12 +204,14 @@ extension FilmsVC: UITableViewDataSource, UITableViewDelegate {
             movie = self.searchingMovies[indexPath.row]
         }
         guard let unwMovie = movie else {return}
-        self.selectedMovie = unwMovie
+        selectedMovie = unwMovie
         let index = IndexPath(row: indexPath.row, section: 0)
         tableView.reloadRows(at: [index], with: .none)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MovieDetailVC") as! MovieDetailVC
+        vc.movieDetail = selectedMovie
         self.navigationController!.pushViewController(vc, animated: true)
+        
     }
     
     
