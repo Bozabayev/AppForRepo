@@ -22,7 +22,9 @@ class MovieGenresCell: UICollectionViewCell {
         // Initialization code
         posterImg.layer.cornerRadius = 7
         posterImg.clipsToBounds = true
-
+    
+        self.backgroundColor = #colorLiteral(red: 0.8010471463, green: 0.8047555089, blue: 0.8138157129, alpha: 0.5)
+        
     }
     
     

@@ -11,6 +11,8 @@ import ObjectMapper
 private enum Keys : String, CodingKey {
     case name = "name"
     case profile_path = "profile_path"
+    case id = "id"
+    case biography = "biography"
 }
 
 class Cast : Mappable, Codable {
@@ -21,10 +23,14 @@ class Cast : Mappable, Codable {
     
     var name : String?
     var profile_path : String?
+    var id : Int?
+    var biography : String?
     
     func mapping(map: Map) {
         name <- map["name"]
         profile_path <- map["profile_path"]
+        id <- map["id"]
+        biography <- map["biography"]
     }
     
     

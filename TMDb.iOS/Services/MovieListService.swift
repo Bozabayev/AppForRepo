@@ -26,6 +26,8 @@ let api_key = "02da584cad2ae31b564d940582770598"
         case similarMovies(movie_id: Int)
         
         case movieCast(movie_id: Int)
+        
+
 
     }
     

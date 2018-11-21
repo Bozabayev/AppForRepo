@@ -57,7 +57,7 @@ class MoviesByGenresVC: UIViewController {
 
 }
 
-extension MoviesByGenresVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MoviesByGenresVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.movies.count
 
@@ -70,19 +70,28 @@ extension MoviesByGenresVC: UICollectionViewDelegate, UICollectionViewDataSource
         }
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieGenresCell", for: indexPath) as? MovieGenresCell {
             let movie = self.movies[indexPath.row]
+            cell.layer.cornerRadius = 7
             cell.configureCell(movie: movie)
             return cell
         } else{
         return UICollectionViewCell()
     }
-        
+}
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MovieDetailVC") as! MovieDetailVC
+        vc.movieDetail = movies[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
     
-    
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
     
 }

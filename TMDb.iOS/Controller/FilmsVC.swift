@@ -88,6 +88,7 @@ class FilmsVC: UIViewController {
                 let array = jsonData["results"] as! [[String: Any]]
                 strongSelf.searchingMovies = array.map({Movie(JSON: $0)!})
                 strongSelf.tableView.reloadData()
+                strongSelf.movieType = .upcoming
             } catch {
                 print("Mapping error")
             }
@@ -99,7 +100,6 @@ class FilmsVC: UIViewController {
     
    @objc private func loadPopularMovies() {
         guard let page = pageNumberOfPopular else {return}
-        print(page)
         provider.request(.popularList(page: page)) { [weak self](result) in
             guard let strongSelf = self else {return}
             switch result {
@@ -109,6 +109,7 @@ class FilmsVC: UIViewController {
                     let array = jsonData["results"] as! [[String: Any]]
                     strongSelf.popularMovies += array.map({Movie(JSON: $0)!})
                     strongSelf.tableView.reloadData()
+                    strongSelf.movieType = .popular
                 } catch {
                     print("Mapping Error")
                 }

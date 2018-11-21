@@ -18,6 +18,7 @@ class MovieDetailVC: UIViewController {
     
     var movieDetail : Movie?
     var movies = [Movie]()
+    var movie : Movie?
     var casts = [Cast]()
     let nibDetail = UINib(nibName: "MovieDetailCell", bundle: nil)
     let nibCollection = UINib(nibName: "MovieDetailCollection", bundle: nil)
@@ -31,9 +32,12 @@ class MovieDetailVC: UIViewController {
         tableView.register(nibDetail, forCellReuseIdentifier: "MovieDetailCell")
         tableView.register(nibCollection, forCellReuseIdentifier: "MovieDetailCollection")
         loadMovieCast()
-        
+        loadSimilarMovies()
+        LoadingIndicator().showActivityIndicator(uiView: self.view)
+
     }
-    
+
+ 
     
     func loadMovieCast() {
         guard let id = movieDetail?.id else {return}
@@ -69,6 +73,7 @@ class MovieDetailVC: UIViewController {
                     let array = jsonData["results"] as! [[String: Any]]
                     strongSelf.movies = array.map({Movie(JSON: $0)!})
                     strongSelf.tableView.reloadData()
+                    LoadingIndicator().hideActivityIndicator(uiView: strongSelf.view)
                 } catch {
                     
                 }
@@ -107,6 +112,7 @@ extension MovieDetailVC : UITableViewDelegate, UITableViewDataSource {
         }else if secondIndex == indexPath{
             if let secondCell = tableView.dequeueReusableCell(withIdentifier: "MovieDetailCollection", for: secondIndex) as? MovieDetailCollection {
                 secondCell.collectionView.tag = 1
+                secondCell.collectionViewTitle.text = "Movie Cast"
                 secondCell.collectionView.dataSource = self
                 secondCell.collectionView.delegate = self
                 secondCell.collectionView.reloadData()
@@ -116,6 +122,7 @@ extension MovieDetailVC : UITableViewDelegate, UITableViewDataSource {
         } else if thirdIndex == indexPath {
             if let thirdCell = tableView.dequeueReusableCell(withIdentifier: "MovieDetailCollection", for: thirdIndex) as? MovieDetailCollection {
                 thirdCell.collectionView.tag = 2
+                thirdCell.collectionViewTitle.text = "Similar Movies"
                 thirdCell.collectionView.delegate = self
                 thirdCell.collectionView.dataSource = self
                 thirdCell.collectionView.reloadData()
@@ -154,7 +161,7 @@ extension MovieDetailVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         case 2:
             return movies.count
         default:
-            casts.count
+            return casts.count
         }
     }
 
@@ -172,16 +179,43 @@ extension MovieDetailVC: UICollectionViewDelegate, UICollectionViewDataSource, U
                 let movie = movies[indexPath.row]
                 thirdCell.configureCellForSimilarMovies(movie: movie)
                 return thirdCell
-        
     }
-        return UICollectionViewCell()
-
+       
         default:
-            <#code#>
+             return UICollectionViewCell()
         }
+        
+         return UICollectionViewCell()
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView.tag {
+        case 1:
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ActorDetailVC") as! ActorDetailVC
+            vc.personId = casts[indexPath.row].id
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 2:
+          movie = movies[indexPath.row]
+          let storyboard = UIStoryboard(name: "Main", bundle: nil)
+          let vc = storyboard.instantiateViewController(withIdentifier: "MovieDetailVC") as! MovieDetailVC
+          vc.movieDetail = movie
+          self.navigationController!.pushViewController(vc, animated: true)
+        
+        default:
+            return
+        }
+    }
+    
+    
+    
+    
+    
+    
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 130, height: 150)
+        return CGSize(width: 130, height: 160)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
