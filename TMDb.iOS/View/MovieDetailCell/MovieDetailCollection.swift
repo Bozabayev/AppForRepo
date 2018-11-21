@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import Moya
 
 class MovieDetailCollection: UITableViewCell {
     
-    let nib = UINib(nibName: "MovieDetailCollectionCell", bundle: nil)
+    
+
+    let nib = UINib(nibName: "MovieDetailCollectionCell", bundle: .main)
+
+
+   
     @IBOutlet weak var collectionViewTitle: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     override func prepareForReuse() {
@@ -20,8 +26,7 @@ class MovieDetailCollection: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionView.register(nib, forCellWithReuseIdentifier: "MovieDetailCollectionCell")
+        self.collectionView.reloadData()
     }
-
-   
     
 }

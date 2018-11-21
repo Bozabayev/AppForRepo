@@ -18,33 +18,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="377" height="176.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uM4-e9-Cw2">
-                        <rect key="frame" x="0.0" y="0.0" width="377" height="176.5"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Cast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4uS-hw-WRV">
-                                <rect key="frame" x="0.0" y="0.0" width="86" height="20"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tZL-aQ-RN0">
-                                <rect key="frame" x="0.0" y="28" width="377" height="148.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZYn-39-ZcJ">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                            </collectionView>
-                        </subviews>
-                    </stackView>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tZL-aQ-RN0">
+                        <rect key="frame" x="0.0" y="44" width="377" height="132.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZYn-39-ZcJ">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Cast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4uS-hw-WRV">
+                        <rect key="frame" x="16" y="16" width="345" height="20"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="uM4-e9-Cw2" secondAttribute="bottom" id="Sff-fE-eIk"/>
-                    <constraint firstItem="uM4-e9-Cw2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="btA-GH-rWc"/>
-                    <constraint firstItem="uM4-e9-Cw2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="cEg-Kc-G6X"/>
-                    <constraint firstAttribute="trailing" secondItem="uM4-e9-Cw2" secondAttribute="trailing" id="rzu-NF-Eib"/>
+                    <constraint firstAttribute="trailing" secondItem="tZL-aQ-RN0" secondAttribute="trailing" id="BpR-9g-loa"/>
+                    <constraint firstAttribute="trailing" secondItem="4uS-hw-WRV" secondAttribute="trailing" constant="16" id="F0G-4n-Zvu"/>
+                    <constraint firstAttribute="bottom" secondItem="tZL-aQ-RN0" secondAttribute="bottom" id="L3H-zL-2eC"/>
+                    <constraint firstItem="4uS-hw-WRV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="aYB-wr-T4y"/>
+                    <constraint firstItem="4uS-hw-WRV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="dBc-Tj-OPC"/>
+                    <constraint firstItem="tZL-aQ-RN0" firstAttribute="top" secondItem="4uS-hw-WRV" secondAttribute="bottom" constant="8" id="sdM-wt-vYM"/>
+                    <constraint firstItem="tZL-aQ-RN0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zSC-GG-FQx"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

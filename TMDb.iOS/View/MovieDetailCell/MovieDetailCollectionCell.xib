@@ -12,36 +12,42 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieDetailCollectionCell" id="gTV-IL-0wX" customClass="MovieDetailCollectionCell" customModule="TMDb_iOS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="152" height="124"/>
+            <rect key="frame" x="0.0" y="0.0" width="181" height="155"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="152" height="124"/>
+                <rect key="frame" x="0.0" y="0.0" width="181" height="155"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5Fq-ft-G0x">
-                        <rect key="frame" x="20" y="12" width="113" height="101.5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mf3-oe-Yog">
-                                <rect key="frame" x="0.0" y="0.0" width="113" height="81"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBb-hF-RZg">
-                                <rect key="frame" x="35.5" y="81" width="42" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                    </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mf3-oe-Yog">
+                        <rect key="frame" x="0.0" y="0.0" width="181" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="120" id="CPC-M8-W7G"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBb-hF-RZg">
+                        <rect key="frame" x="0.0" y="128" width="181" height="27"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstItem="aBb-hF-RZg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6gy-hy-uLI"/>
+                <constraint firstAttribute="trailing" secondItem="aBb-hF-RZg" secondAttribute="trailing" id="JFD-8R-ayr"/>
+                <constraint firstItem="Mf3-oe-Yog" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="LiE-al-fcB"/>
+                <constraint firstAttribute="bottom" secondItem="aBb-hF-RZg" secondAttribute="bottom" id="N0h-XR-jMV"/>
+                <constraint firstAttribute="trailing" secondItem="Mf3-oe-Yog" secondAttribute="trailing" id="gcW-uO-7Ow"/>
+                <constraint firstItem="aBb-hF-RZg" firstAttribute="top" secondItem="Mf3-oe-Yog" secondAttribute="bottom" constant="8" id="o5z-5N-fdN"/>
+                <constraint firstItem="Mf3-oe-Yog" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zjO-1O-tVp"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="152" height="124"/>
+            <size key="customSize" width="181" height="155"/>
             <connections>
-                <outlet property="actorNameLbl" destination="aBb-hF-RZg" id="HDD-Gl-mr4"/>
                 <outlet property="collectionCellImg" destination="Mf3-oe-Yog" id="YEE-rR-aDg"/>
+                <outlet property="nameLbl" destination="aBb-hF-RZg" id="HDD-Gl-mr4"/>
             </connections>
-            <point key="canvasLocation" x="219.19999999999999" y="107.0464767616192"/>
+            <point key="canvasLocation" x="242.40000000000001" y="120.98950524737631"/>
         </collectionViewCell>
     </objects>
 </document>
