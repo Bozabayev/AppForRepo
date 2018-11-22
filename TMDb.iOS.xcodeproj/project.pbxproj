@@ -21,6 +21,10 @@
 		9108679E2191B39000A28568 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9108679C2191B39000A28568 /* MovieCell.swift */; };
 		9108679F2191B39000A28568 /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9108679D2191B39000A28568 /* MovieCell.xib */; };
 		910867A22191B8FF00A28568 /* MovieListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910867A12191B8FF00A28568 /* MovieListService.swift */; };
+		911CE09721A6975400EC4BB9 /* AccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911CE09621A6975400EC4BB9 /* AccountVC.swift */; };
+		911CE09A21A6989300EC4BB9 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911CE09921A6989300EC4BB9 /* AccountService.swift */; };
+		911CE0A221A6C4D200EC4BB9 /* TransitionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911CE0A121A6C4D200EC4BB9 /* TransitionVC.swift */; };
+		911CE0A621A6C5CE00EC4BB9 /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911CE0A521A6C5CE00EC4BB9 /* UserVC.swift */; };
 		911E4A0221A3F048004BE962 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911E4A0121A3F048004BE962 /* Cast.swift */; };
 		911E4A0921A3F49E004BE962 /* MovieDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911E4A0721A3F49E004BE962 /* MovieDetailCell.swift */; };
 		911E4A0A21A3F49E004BE962 /* MovieDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 911E4A0821A3F49E004BE962 /* MovieDetailCell.xib */; };
@@ -57,6 +61,10 @@
 		9108679C2191B39000A28568 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		9108679D2191B39000A28568 /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 		910867A12191B8FF00A28568 /* MovieListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListService.swift; sourceTree = "<group>"; };
+		911CE09621A6975400EC4BB9 /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
+		911CE09921A6989300EC4BB9 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		911CE0A121A6C4D200EC4BB9 /* TransitionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionVC.swift; sourceTree = "<group>"; };
+		911CE0A521A6C5CE00EC4BB9 /* UserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
 		911E4A0121A3F048004BE962 /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		911E4A0721A3F49E004BE962 /* MovieDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailCell.swift; sourceTree = "<group>"; };
 		911E4A0821A3F49E004BE962 /* MovieDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailCell.xib; sourceTree = "<group>"; };
@@ -159,6 +167,9 @@
 				915667F2219419ED004AF88A /* MoviesByGenresVC.swift */,
 				915667F821942880004AF88A /* MovieDetailVC.swift */,
 				9104503421A568F70053142F /* ActorDetailVC.swift */,
+				911CE09621A6975400EC4BB9 /* AccountVC.swift */,
+				911CE0A121A6C4D200EC4BB9 /* TransitionVC.swift */,
+				911CE0A521A6C5CE00EC4BB9 /* UserVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -166,6 +177,7 @@
 		91086793219170AD00A28568 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				911CE09821A6977800EC4BB9 /* AccountCell */,
 				9104503621A56E440053142F /* ActorDetailCell */,
 				911E4A0621A3F470004BE962 /* MovieDetailCell */,
 				911E4A0521A3F3C9004BE962 /* MovieGenresCell */,
@@ -191,8 +203,16 @@
 			children = (
 				910867A12191B8FF00A28568 /* MovieListService.swift */,
 				9104503721A56E9C0053142F /* ActorListService.swift */,
+				911CE09921A6989300EC4BB9 /* AccountService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		911CE09821A6977800EC4BB9 /* AccountCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AccountCell;
 			sourceTree = "<group>";
 		};
 		911E4A0321A3F3A5004BE962 /* MovieCell */ = {
@@ -380,8 +400,12 @@
 				915667ED2193E1FB004AF88A /* GenresVC.swift in Sources */,
 				915667F3219419ED004AF88A /* MoviesByGenresVC.swift in Sources */,
 				915667E721928F2B004AF88A /* Movie.swift in Sources */,
+				911CE0A621A6C5CE00EC4BB9 /* UserVC.swift in Sources */,
 				9108679E2191B39000A28568 /* MovieCell.swift in Sources */,
+				911CE0A221A6C4D200EC4BB9 /* TransitionVC.swift in Sources */,
+				911CE09721A6975400EC4BB9 /* AccountVC.swift in Sources */,
 				915667EB2192E925004AF88A /* Genre.swift in Sources */,
+				911CE09A21A6989300EC4BB9 /* AccountService.swift in Sources */,
 				9104503821A56E9C0053142F /* ActorListService.swift in Sources */,
 				911E4A0921A3F49E004BE962 /* MovieDetailCell.swift in Sources */,
 			);

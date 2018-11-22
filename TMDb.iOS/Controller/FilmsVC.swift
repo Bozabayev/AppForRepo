@@ -11,7 +11,7 @@ import Moya
 
 
 
-class FilmsVC: UIViewController {
+class FilmsVC: UIViewController{
     
     
     
@@ -43,8 +43,10 @@ class FilmsVC: UIViewController {
             tableView.reloadData()
         }
     }
-    let tap = UITapGestureRecognizer(target: self, action: #selector(FilmsVC.handleTap))
+    var imageView : UIImageView?
+    let tap = UITapGestureRecognizer(target: self, action: #selector(FilmsVC.handleTap(_:)))
     let nib = UINib(nibName: "MovieCell", bundle: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -54,6 +56,7 @@ class FilmsVC: UIViewController {
         loadUpcomingMovies()
         self.tableView.register(nib, forCellReuseIdentifier: "movieCell")
         self.tableView.rowHeight = 170.0
+        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
     }
     
@@ -71,7 +74,10 @@ class FilmsVC: UIViewController {
         setSearchBar()
     }
     
-    @objc func handleTap() {
+    
+   
+    
+    @objc func handleTap(_ recognizer: UITapGestureRecognizer) {
         navigationItem.titleView = nil
         navigationItem.rightBarButtonItem = searchBtn
     }
@@ -88,7 +94,6 @@ class FilmsVC: UIViewController {
                 let array = jsonData["results"] as! [[String: Any]]
                 strongSelf.searchingMovies = array.map({Movie(JSON: $0)!})
                 strongSelf.tableView.reloadData()
-                strongSelf.movieType = .upcoming
             } catch {
                 print("Mapping error")
             }
@@ -109,7 +114,6 @@ class FilmsVC: UIViewController {
                     let array = jsonData["results"] as! [[String: Any]]
                     strongSelf.popularMovies += array.map({Movie(JSON: $0)!})
                     strongSelf.tableView.reloadData()
-                    strongSelf.movieType = .popular
                 } catch {
                     print("Mapping Error")
                 }
@@ -213,10 +217,7 @@ extension FilmsVC: UITableViewDataSource, UITableViewDelegate {
         vc.movieDetail = selectedMovie
         self.navigationController!.pushViewController(vc, animated: true)
         
-    }
-    
-    
-    
+    } 
     
 }
 
@@ -225,17 +226,21 @@ extension FilmsVC: UITableViewDataSource, UITableViewDelegate {
 extension FilmsVC: UISearchBarDelegate {
     
 
+    
+    
     func setSearchBar() {
+        
         searchBar.showsCancelButton = true
         navigationItem.titleView = searchBar
         searchBtn = navigationItem.rightBarButtonItem
         navigationItem.rightBarButtonItem = nil
+        searchBar.becomeFirstResponder()
         self.view.addGestureRecognizer(tap)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        navigationItem.titleView = nil
-        navigationItem.rightBarButtonItem = searchBtn
+       navigationItem.titleView = nil
+       navigationItem.rightBarButtonItem = searchBtn
         self.view.removeGestureRecognizer(tap)
     }
     

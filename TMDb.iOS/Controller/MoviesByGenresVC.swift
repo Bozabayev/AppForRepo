@@ -29,7 +29,6 @@ class MoviesByGenresVC: UIViewController {
         self.collectionView.register(nib, forCellWithReuseIdentifier: "movieGenresCell")
         loadMoviesByGenreId()
         navigationItem.title = genreName
-    
 
         // Do any additional setup after loading the view.
     }

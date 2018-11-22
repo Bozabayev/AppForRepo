@@ -29,6 +29,7 @@ class GenresVC: UIViewController {
         tableView.dataSource = self
         loadGenres()
         self.tableView.register(nib, forCellReuseIdentifier: "genreCell")
+        navigationItem.rightBarButtonItem = nil
     }
     
     

@@ -34,7 +34,7 @@ class MovieDetailVC: UIViewController {
         loadMovieCast()
         loadSimilarMovies()
         LoadingIndicator().showActivityIndicator(uiView: self.view)
-
+        navigationItem.title = "Movie Details"
     }
 
  

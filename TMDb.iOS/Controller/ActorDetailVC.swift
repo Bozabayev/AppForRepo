@@ -14,11 +14,9 @@ class ActorDetailVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
   
-    var posterPath : String?
-    var name: String?
-    var biography : String?
+    
     var movie : Movie?
-    var details = [Cast]()
+    var actorInfo : Cast?
     var movies = [Movie]()
     var personId : Int?
     let provider = MoyaProvider<ActorDetailService>()
@@ -31,11 +29,11 @@ class ActorDetailVC: UIViewController {
         tableView.dataSource = self
         tableView.register(nib, forCellReuseIdentifier: "ActorDetailCell")
         tableView.register(nibMovies, forCellReuseIdentifier: "MovieDetailCollection")
-        
         loadActorDetail()
         loadFilmography()
         navigationItem.title = "Actor Info"
         LoadingIndicator().showActivityIndicator(uiView: self.view)
+        
     }
     
     
@@ -47,9 +45,7 @@ class ActorDetailVC: UIViewController {
             case .success(let response):
                 do {
                     let jsonData = try response.mapJSON() as! [String: Any]
-                    strongself.biography = jsonData["biography"] as? String
-                    strongself.name = jsonData["name"] as? String
-                    strongself.posterPath = jsonData["profile_path"] as? String
+                    strongself.actorInfo = (Cast(JSON: jsonData)!)
                     strongself.tableView.reloadData()
                 } catch {
                     
@@ -105,15 +101,11 @@ extension ActorDetailVC : UITableViewDelegate, UITableViewDataSource {
         
         if firstIndex == indexPath {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ActorDetailCell", for: firstIndex) as? ActorDetailCell {
-            cell.actorNameLbl.text = self.name
-            guard let biography = self.biography else {return UITableViewCell()}
-            cell.biographyLbl.text = "Biography: \(String(describing: biography))"
-            guard let profile_path = self.posterPath else {return UITableViewCell()}
+            guard let cast = actorInfo else {return UITableViewCell()}
+            cell.configureCell(cast: cast)
             cell.posterImg.layer.cornerRadius = 7
-            let URL_IMAGE = "https://image.tmdb.org/t/p/w500/\(String(describing: (profile_path)))"
-            cell.posterImg.sd_setImage(with: URL(string: URL_IMAGE)) { (image, error, cacheType, imageURL) in
-                cell.posterImg.image = image }
             return cell
+            
         }
         return UITableViewCell()
         }

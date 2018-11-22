@@ -27,8 +27,8 @@ class Cast : Mappable, Codable {
     var biography : String?
     
     func mapping(map: Map) {
-        name <- map["name"]
-        profile_path <- map["profile_path"]
+        name <- map[Keys.name.rawValue]
+        profile_path <- map[Keys.profile_path.rawValue]
         id <- map["id"]
         biography <- map["biography"]
     }
