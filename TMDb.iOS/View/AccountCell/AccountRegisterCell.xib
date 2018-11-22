@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountRegisterCell" rowHeight="242" id="KGk-i7-Jjw" customClass="AccountRegisterCell" customModule="TMDb_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="358" height="242"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="358" height="241.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xI3-lv-sHP" customClass="RoundedButton" customModule="TMDb_iOS" customModuleProvider="target">
+                        <rect key="frame" x="54" y="180.5" width="250" height="40"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="9ts-Pa-j2A"/>
+                        </constraints>
+                        <state key="normal" title="Create Account">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="createAccBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="qbW-78-4kI"/>
+                        </connections>
+                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6aA-cL-xcI">
+                        <rect key="frame" x="54" y="81.5" width="250" height="79"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khX-GR-leJ">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Np6-mC-7Gz"/>
+                                    <constraint firstAttribute="height" constant="30" id="rzI-5W-QJR"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tmx-BP-dZm">
+                                <rect key="frame" x="0.0" y="35" width="250" height="2"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="7Ei-kq-3f1"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gI-nj-vbQ">
+                                <rect key="frame" x="0.0" y="42" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2FA-t6-WON"/>
+                                    <constraint firstAttribute="width" constant="250" id="wlX-cG-mAT"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7GZ-Ge-A4K">
+                                <rect key="frame" x="0.0" y="77" width="250" height="2"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="vBF-P4-QQE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="tmx-BP-dZm" firstAttribute="leading" secondItem="khX-GR-leJ" secondAttribute="leading" id="YQp-Ba-Kxr"/>
+                            <constraint firstItem="7GZ-Ge-A4K" firstAttribute="leading" secondItem="6gI-nj-vbQ" secondAttribute="leading" id="wvl-r4-WVP"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6aA-cL-xcI" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Gjg-FL-5lY"/>
+                    <constraint firstItem="xI3-lv-sHP" firstAttribute="leading" secondItem="6aA-cL-xcI" secondAttribute="leading" id="JbB-82-3wB"/>
+                    <constraint firstItem="xI3-lv-sHP" firstAttribute="trailing" secondItem="6aA-cL-xcI" secondAttribute="trailing" id="Sd3-5i-61S"/>
+                    <constraint firstItem="xI3-lv-sHP" firstAttribute="top" secondItem="6aA-cL-xcI" secondAttribute="bottom" constant="20" id="fZ0-Ct-skb"/>
+                    <constraint firstItem="6aA-cL-xcI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jeS-uF-dLc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="passwordTxt" destination="6gI-nj-vbQ" id="syV-gr-Isf"/>
+                <outlet property="userNameTxt" destination="khX-GR-leJ" id="wmN-iw-Imx"/>
+            </connections>
+            <point key="canvasLocation" x="168" y="175.41229385307346"/>
+        </tableViewCell>
+    </objects>
+</document>

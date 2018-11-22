@@ -36,15 +36,31 @@ class Movie: Mappable, Codable {
     }
     
     func mapping(map: Map) {
-        title  <- map["title"]
-        id     <- map["id"]
-        overview  <- map["overview"]
-        poster_path <- map["poster_path"]
+        title  <- map[Keys.title.rawValue]
+        id     <- map[Keys.id.rawValue]
+        overview  <- map[Keys.overview.rawValue]
+        poster_path <- map[Keys.poster_path.rawValue]
         vote_average <- map["vote_average"]
-        genre_ids <- map["genre_ids"]
+        genre_ids <- map[Keys.genre_ids.rawValue]
     }
 
+    func encode(to encoder: Encoder)throws{
+        var container = encoder.container(keyedBy: Keys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(title, forKey: .title)
+        try container.encode(overview, forKey: .overview)
+        try container.encode(poster_path, forKey: .poster_path)
+        try container.encode(genre_ids, forKey: .genre_ids)
+    }
     
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        title = try container.decode(String.self, forKey: .title)
+        overview = try container.decode(String.self, forKey: .overview)
+        poster_path = try container.decode(String.self, forKey: .poster_path)
+        genre_ids = try container.decode(Int.self, forKey: .genre_ids)
+    }
     
 }
 

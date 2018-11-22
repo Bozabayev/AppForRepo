@@ -113,6 +113,7 @@ class FilmsVC: UIViewController{
                     let jsonData = try response.mapJSON() as! [String: Any]
                     let array = jsonData["results"] as! [[String: Any]]
                     strongSelf.popularMovies += array.map({Movie(JSON: $0)!})
+                    print(strongSelf.popularMovies)
                     strongSelf.tableView.reloadData()
                 } catch {
                     print("Mapping Error")

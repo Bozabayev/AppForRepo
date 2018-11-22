@@ -72,6 +72,7 @@ class MovieDetailVC: UIViewController {
                     let jsonData = try response.mapJSON() as! [String: Any]
                     let array = jsonData["results"] as! [[String: Any]]
                     strongSelf.movies = array.map({Movie(JSON: $0)!})
+                    print(strongSelf.movies.count)
                     strongSelf.tableView.reloadData()
                     LoadingIndicator().hideActivityIndicator(uiView: strongSelf.view)
                 } catch {
@@ -119,7 +120,7 @@ extension MovieDetailVC : UITableViewDelegate, UITableViewDataSource {
                 return secondCell
             }
             return UITableViewCell()
-        } else if thirdIndex == indexPath {
+        } else if thirdIndex == indexPath && movies.count != 0 {
             if let thirdCell = tableView.dequeueReusableCell(withIdentifier: "MovieDetailCollection", for: thirdIndex) as? MovieDetailCollection {
                 thirdCell.collectionView.tag = 2
                 thirdCell.collectionViewTitle.text = "Similar Movies"
@@ -144,7 +145,11 @@ extension MovieDetailVC : UITableViewDelegate, UITableViewDataSource {
         case 1:
             return 220
         case 2:
+            if movies.count != 0 {
             return 220
+            } else {
+                return 0
+            }
         default:
             return UITableView.automaticDimension
         }
