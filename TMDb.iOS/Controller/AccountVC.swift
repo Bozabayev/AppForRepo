@@ -14,15 +14,23 @@ fileprivate enum SegmentType {
         case registration
 }
 
+var sessionId : String? = ""
 
 
-
-class AccountVC: UIViewController {
+class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegate, CreateAccButtonTapDelegate, LoginTextDelegate {
+    
+    
+   
+    
+   
+   
+    
 
     @IBOutlet weak var segmentedController: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
    fileprivate let authorizationNib = UINib(nibName: "AccountAuthorizationCell", bundle: nil)
    fileprivate let registrationNib = UINib(nibName: "AccountRegisterCell", bundle: nil)
+    fileprivate let webNib = UINib(nibName: "AccountRegisterWebCell", bundle: nil)
    fileprivate let provider = MoyaProvider<AccountService>()
     fileprivate var accounts : Account?
     fileprivate var segmentType = SegmentType.authorization {
@@ -37,6 +45,7 @@ class AccountVC: UIViewController {
         navigationItem.setHidesBackButton(true, animated: false)
        self.tableView.register(authorizationNib, forCellReuseIdentifier: "AccountAuthorizationCell")
         self.tableView.register(registrationNib, forCellReuseIdentifier: "AccountRegisterCell")
+        self.tableView.register(webNib, forCellReuseIdentifier: "AccountRegisterWebCell")
     }
     
     @IBAction func segmentSwitched(_ sender: Any) {
@@ -52,6 +61,36 @@ class AccountVC: UIViewController {
     }
     
     
+    func createAccTextDelegate(username: String, password: String) {
+        accounts = Account(JSON: ["username" : username, "password" : password])
+    }
+    
+    
+    func loginTextDelegate(username: String, password: String) {
+        accounts = Account(JSON: ["username" : username, "password" : password])
+    }
+    
+    
+    
+    func loginTapButton() {
+        tableView.reloadData()
+        requestToken()
+        
+        
+    }
+    
+    func createTapButton() {
+        tableView.reloadData()
+        requestToken()
+
+//        requestLoginToken()
+//        requestSessionId()
+//        print(sessionId)
+        
+    }
+    
+    
+    
     func requestToken() {
         provider.request(.requestToken) { [weak self](result) in
             guard let strongSelf = self else {return}
@@ -59,7 +98,8 @@ class AccountVC: UIViewController {
             case .success(let response):
                 do {
                     let jsonData = try response.mapJSON() as! [String : Any]
-                    strongSelf.accounts = Account(JSON: jsonData)
+                    strongSelf.accounts?.request_token = (jsonData["request_token"] as! String)
+                    strongSelf.requestLoginToken()
                 } catch {
                     print("Moya Error")
                 }
@@ -77,7 +117,10 @@ class AccountVC: UIViewController {
             case .success(let response):
                 do {
                     let jsonData = try response.mapJSON() as! [String : Any]
-                    strongSelf.accounts = Account(JSON: jsonData)
+                    print(jsonData)
+                    strongSelf.accounts?.request_token = (jsonData["request_token"] as? String)
+                    print(strongSelf.accounts?.request_token)
+                    strongSelf.requestSessionId()
                 } catch {
                     print("Moya error")
                 
@@ -99,7 +142,8 @@ class AccountVC: UIViewController {
             case .success(let response):
                 do {
                     let jsonData = try response.mapJSON() as! [String : Any]
-                    strongSelf.accounts = Account(JSON: jsonData)
+                    sessionId = jsonData["session_id"] as? String
+                    print(sessionId)
                 } catch {
                     print("Moya Error")
                 }
@@ -131,14 +175,16 @@ extension AccountVC : UITableViewDelegate, UITableViewDataSource {
         switch segmentType {
         case .authorization:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "AccountAuthorizationCell", for: indexPath) as? AccountAuthorizationCell {
-                guard let account = accounts else {return UITableViewCell()}
-                cell.configureAccount(account: account)
+                cell.delegate = self
+                cell.delegateText = self
                 return cell
                 
             }
             
         case .registration:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "AccountRegisterCell", for: indexPath) as? AccountRegisterCell{
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "AccountRegisterWebCell", for: indexPath) as? AccountRegisterWebCell {
+                cell.layer.frame.size.width = self.view.frame.size.width
+                cell.contentView.frame.size.width = self.view.frame.size.width
                 return cell
                 
             }
@@ -150,15 +196,16 @@ extension AccountVC : UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        switch segmentType {
+        case .authorization:
+            return 400
+        case .registration:
+            return 400
+        }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
+  
 }
+
+
+

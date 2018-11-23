@@ -8,34 +8,50 @@
 
 import UIKit
 
-class AccountRegisterCell: UITableViewCell {
+protocol CreateAccButtonTapDelegate {
+    func createTapButton()
+}
+
+
+protocol CreateAccTextDelegate{
+    func createAccTextDelegate(username: String, password: String)
+}
+
+class AccountRegisterCell: UITableViewCell, UITextFieldDelegate {
     
     
-    @IBOutlet weak var userNameTxt: UITextField!
+    @IBOutlet weak var userNameTxtReg: UITextField!
     
-    @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var passwordTxtReg: UITextField!
+    
+    var delegate : CreateAccButtonTapDelegate?
+    var delegateText : CreateAccTextDelegate?
     override func prepareForReuse() {
         super.prepareForReuse()
+    
     }
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        userNameTxtReg.delegate = self
+        passwordTxtReg.delegate = self
     }
 
    
     @IBAction func createAccBtnPressed(_ sender: Any) {
+        delegate?.createTapButton()
+    }
+    
+    @objc func textFieldDidEndEditing(_ textField: UITextField) {
+        delegateText?.createAccTextDelegate(username: userNameTxtReg.text!, password: passwordTxtReg.text!)
     }
     
     
+  
     
-    func configureAccount(account: Account) {
-        if (userNameTxt.text!.count) > 0 && (passwordTxt.text!.count) > 0 {
-            account.username = userNameTxt.text
-            account.password = passwordTxt.text
-        }
-        
-    }
+   
+    
+  
     
 }

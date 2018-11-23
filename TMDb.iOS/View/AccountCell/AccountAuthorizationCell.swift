@@ -8,32 +8,42 @@
 
 import UIKit
 
-class AccountAuthorizationCell: UITableViewCell {
+protocol LoginButtonTapDelegate {
+    func loginTapButton()
+}
+
+protocol LoginTextDelegate{
+    func loginTextDelegate(username: String, password: String)
+}
+
+class AccountAuthorizationCell: UITableViewCell, UITextFieldDelegate {
     
     
-    @IBOutlet weak var userNameTxt: UITextField!
+    @IBOutlet weak var userNameTxtAuth: UITextField!
     
-    @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var passwordTxtAuth: UITextField!
+    
+    var delegate : LoginButtonTapDelegate?
+    var delegateText : LoginTextDelegate?
     override func prepareForReuse() {
         super.prepareForReuse()
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        userNameTxtAuth.delegate = self
+        passwordTxtAuth.delegate = self
     }
 
   
     @IBAction func loginBtnPressed(_ sender: Any) {
+        delegate?.loginTapButton()
     }
     
-    
-    func configureAccount(account: Account) {
-        if (userNameTxt.text!.count) > 0 && (passwordTxt.text!.count) > 0 {
-        account.username = userNameTxt.text
-        account.password = passwordTxt.text
-        }
-    
+   
+   
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegateText?.loginTextDelegate(username: userNameTxtAuth.text!, password: passwordTxtAuth.text!)
     }
     
 }

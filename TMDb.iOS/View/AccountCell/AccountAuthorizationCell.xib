@@ -91,8 +91,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="passwordTxt" destination="C7S-6e-EWQ" id="GqL-hL-BhX"/>
-                <outlet property="userNameTxt" destination="rDw-za-MzC" id="QtZ-R4-Nb7"/>
+                <outlet property="passwordTxtAuth" destination="C7S-6e-EWQ" id="GqL-hL-BhX"/>
+                <outlet property="userNameTxtAuth" destination="rDw-za-MzC" id="QtZ-R4-Nb7"/>
             </connections>
             <point key="canvasLocation" x="146.40000000000001" y="205.09745127436284"/>
         </tableViewCell>

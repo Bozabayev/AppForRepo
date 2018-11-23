@@ -64,7 +64,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7GZ-Ge-A4K">
                                 <rect key="frame" x="0.0" y="77" width="250" height="2"/>
@@ -90,8 +90,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="passwordTxt" destination="6gI-nj-vbQ" id="syV-gr-Isf"/>
-                <outlet property="userNameTxt" destination="khX-GR-leJ" id="wmN-iw-Imx"/>
+                <outlet property="passwordTxtReg" destination="6gI-nj-vbQ" id="syV-gr-Isf"/>
+                <outlet property="userNameTxtReg" destination="khX-GR-leJ" id="wmN-iw-Imx"/>
             </connections>
             <point key="canvasLocation" x="168" y="175.41229385307346"/>
         </tableViewCell>
