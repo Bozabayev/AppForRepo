@@ -28,7 +28,10 @@ class MoviesByGenresVC: UIViewController {
         collectionView.dataSource = self
         self.collectionView.register(nib, forCellWithReuseIdentifier: "movieGenresCell")
         loadMoviesByGenreId()
-        navigationItem.title = genreName
+        navigationItem.title = genreName?.capitalizingFirstLetter()
+        let backItem = UIBarButtonItem()
+        backItem.title = "Назад"
+        navigationItem.backBarButtonItem = backItem
 
         // Do any additional setup after loading the view.
     }
@@ -94,3 +97,6 @@ extension MoviesByGenresVC: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
 }
+
+
+

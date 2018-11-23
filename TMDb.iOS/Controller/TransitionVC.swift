@@ -20,9 +20,9 @@ class TransitionVC: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil )
         let accountVC = storyboard.instantiateViewController(withIdentifier: "AccountVC")
         let userVC = storyboard.instantiateViewController(withIdentifier: "UserVC")
-        if transitionNumber == 1 {
+        if sessionId == "" {
         self.navigationController?.pushViewController(accountVC, animated: false)
-        } else if transitionNumber == 2 {
+        } else  {
             self.navigationController?.pushViewController(userVC, animated: false)
         }
     }

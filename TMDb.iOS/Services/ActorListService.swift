@@ -49,7 +49,7 @@ extension ActorDetailService : TargetType {
     var task: Task {
         switch self {
         case .actorDetail(let person_id), .actorMovies(let person_id), .actorImages(let person_id):
-            return .requestParameters(parameters: ["api_key" : api_key, "person_id" : person_id], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["api_key" : api_key, "person_id" : person_id, "language" : "ru"], encoding: URLEncoding.default)
         }
     }
     

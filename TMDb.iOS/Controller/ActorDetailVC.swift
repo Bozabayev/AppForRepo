@@ -31,8 +31,9 @@ class ActorDetailVC: UIViewController {
         tableView.register(nibMovies, forCellReuseIdentifier: "MovieDetailCollection")
         loadActorDetail()
         loadFilmography()
-        navigationItem.title = "Actor Info"
+        navigationItem.title = "Актёр"
         LoadingIndicator().showActivityIndicator(uiView: self.view)
+        
         
     }
     
@@ -112,7 +113,7 @@ extension ActorDetailVC : UITableViewDelegate, UITableViewDataSource {
         else if secondIndex == indexPath {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieDetailCollection", for: secondIndex) as? MovieDetailCollection {
                 cell.collectionView.tag = 3
-                cell.collectionViewTitle.text = "Filmography"
+                cell.collectionViewTitle.text = "Фильмография"
                 cell.collectionView.delegate = self
                 cell.collectionView.dataSource = self
                 cell.collectionView.reloadData()

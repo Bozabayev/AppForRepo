@@ -34,7 +34,10 @@ class MovieDetailVC: UIViewController {
         loadMovieCast()
         loadSimilarMovies()
         LoadingIndicator().showActivityIndicator(uiView: self.view)
-        navigationItem.title = "Movie Details"
+        navigationItem.title = "Описание фильма"
+        let backItem = UIBarButtonItem()
+        backItem.title = "Назад"
+        navigationItem.backBarButtonItem = backItem
     }
 
  
@@ -113,7 +116,7 @@ extension MovieDetailVC : UITableViewDelegate, UITableViewDataSource {
         }else if secondIndex == indexPath{
             if let secondCell = tableView.dequeueReusableCell(withIdentifier: "MovieDetailCollection", for: secondIndex) as? MovieDetailCollection {
                 secondCell.collectionView.tag = 1
-                secondCell.collectionViewTitle.text = "Movie Cast"
+                secondCell.collectionViewTitle.text = "В ролях"
                 secondCell.collectionView.dataSource = self
                 secondCell.collectionView.delegate = self
                 secondCell.collectionView.reloadData()
@@ -123,7 +126,7 @@ extension MovieDetailVC : UITableViewDelegate, UITableViewDataSource {
         } else if thirdIndex == indexPath && movies.count != 0 {
             if let thirdCell = tableView.dequeueReusableCell(withIdentifier: "MovieDetailCollection", for: thirdIndex) as? MovieDetailCollection {
                 thirdCell.collectionView.tag = 2
-                thirdCell.collectionViewTitle.text = "Similar Movies"
+                thirdCell.collectionViewTitle.text = "Схожие фильмы"
                 thirdCell.collectionView.delegate = self
                 thirdCell.collectionView.dataSource = self
                 thirdCell.collectionView.reloadData()

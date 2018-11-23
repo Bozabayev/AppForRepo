@@ -81,17 +81,17 @@ extension MovieListService: TargetType {
     var task: Task {
         switch self {
         case .genreList:
-            return .requestParameters(parameters: ["api_key" : api_key ], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["api_key" : api_key , "language" : "ru"], encoding: URLEncoding.default)
         case .discoverGenreList(let genre_id, let page):
-            return .requestParameters(parameters: ["api_key" : api_key, "with_genres" : genre_id, "page" : page], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["api_key" : api_key, "with_genres" : genre_id,"language" : "ru", "page" : page], encoding: URLEncoding.default)
         case .searchMovie(let query):
-            return .requestParameters(parameters: ["api_key" : api_key, "query" : query], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["api_key" : api_key, "query" : query, "language" : "ru"], encoding: URLEncoding.default)
         case .upcomingList(let page), .popularList(let page):
-            return .requestParameters(parameters: ["api_key" : api_key,"page" : page ], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["api_key" : api_key, "language" : "ru" ,"page" : page ], encoding: URLEncoding.default)
         case .similarMovies(let movie_id):
-            return .requestParameters(parameters: ["api_key" : api_key, "movie_id" : movie_id, "page" : pageNumberOfSimilarMovies as Any ], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["api_key" : api_key, "movie_id" : movie_id, "language" : "ru", "page" : pageNumberOfSimilarMovies as Any ], encoding: URLEncoding.default)
         case .movieCast(let movie_id):
-            return .requestParameters(parameters: ["api_key" : api_key, "movie_id" : movie_id], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["api_key" : api_key, "language" : "ru" ,"movie_id" : movie_id], encoding: URLEncoding.default)
         }
     }
     

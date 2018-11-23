@@ -30,10 +30,20 @@ class GenreCell: UITableViewCell {
     func configureCell(genre: Genre){
         
         let genreName = genre.name
-        genresTitle.text = genreName
-        
+        genresTitle.text = genreName.capitalizingFirstLetter()
+       
     }
 
     
     
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + self.lowercased().dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 }

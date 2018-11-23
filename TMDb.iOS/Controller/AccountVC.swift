@@ -31,6 +31,7 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
    fileprivate let authorizationNib = UINib(nibName: "AccountAuthorizationCell", bundle: nil)
    fileprivate let registrationNib = UINib(nibName: "AccountRegisterCell", bundle: nil)
     fileprivate let webNib = UINib(nibName: "AccountRegisterWebCell", bundle: nil)
+    let alert = UIAlertController(title: "Ooops", message: "Invalid data", preferredStyle: UIAlertController.Style.alert)
    fileprivate let provider = MoyaProvider<AccountService>()
     fileprivate var accounts : Account?
     fileprivate var segmentType = SegmentType.authorization {
@@ -46,6 +47,8 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
        self.tableView.register(authorizationNib, forCellReuseIdentifier: "AccountAuthorizationCell")
         self.tableView.register(registrationNib, forCellReuseIdentifier: "AccountRegisterCell")
         self.tableView.register(webNib, forCellReuseIdentifier: "AccountRegisterWebCell")
+       alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+       alert.view.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
     
     @IBAction func segmentSwitched(_ sender: Any) {
@@ -117,10 +120,13 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
             case .success(let response):
                 do {
                     let jsonData = try response.mapJSON() as! [String : Any]
-                    print(jsonData)
                     strongSelf.accounts?.request_token = (jsonData["request_token"] as? String)
                     print(strongSelf.accounts?.request_token)
+                    if strongSelf.accounts?.request_token == nil {
+                        strongSelf.present(strongSelf.alert, animated: true, completion: nil)
+                    } else {
                     strongSelf.requestSessionId()
+                    }
                 } catch {
                     print("Moya error")
                 
@@ -143,7 +149,11 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
                 do {
                     let jsonData = try response.mapJSON() as! [String : Any]
                     sessionId = jsonData["session_id"] as? String
-                    print(sessionId)
+                    if sessionId != "" {
+                        strongSelf.pushView()
+                    } else {
+                        strongSelf.present(strongSelf.alert, animated: true, completion: nil)
+                    }
                 } catch {
                     print("Moya Error")
                 }
@@ -153,6 +163,13 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
         }
     }
     
+    
+    func pushView() {
+        let stroryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = stroryboard.instantiateViewController(withIdentifier: "UserVC")
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
     
     

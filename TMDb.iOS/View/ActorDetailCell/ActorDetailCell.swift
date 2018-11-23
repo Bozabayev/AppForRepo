@@ -32,7 +32,7 @@ class ActorDetailCell: UITableViewCell {
         if cast.biography == nil || cast.biography == "" {
             biographyLbl.text = ""
         }else {
-            biographyLbl.text = "Biography: \(String(describing: cast.biography!))"
+            biographyLbl.text = "Биография: \(String(describing: cast.biography!))"
         }
         
         if cast.profile_path == nil {

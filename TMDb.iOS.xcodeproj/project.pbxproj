@@ -44,10 +44,13 @@
 		915667F921942880004AF88A /* MovieDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915667F821942880004AF88A /* MovieDetailVC.swift */; };
 		91D0A50E21A6CC0A002B1409 /* AccountAuthorizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A50C21A6CC0A002B1409 /* AccountAuthorizationCell.swift */; };
 		91D0A50F21A6CC0A002B1409 /* AccountAuthorizationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D0A50D21A6CC0A002B1409 /* AccountAuthorizationCell.xib */; };
-		91D0A51221A6CC21002B1409 /* AccountRegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A51021A6CC21002B1409 /* AccountRegisterCell.swift */; };
 		91D0A51321A6CC21002B1409 /* AccountRegisterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D0A51121A6CC21002B1409 /* AccountRegisterCell.xib */; };
 		91D0A51521A6CD8F002B1409 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A51421A6CD8F002B1409 /* RoundedButton.swift */; };
 		91D0A51721A6DD39002B1409 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A51621A6DD39002B1409 /* Account.swift */; };
+		91D0A51821A7DC20002B1409 /* AccountRegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A51021A6CC21002B1409 /* AccountRegisterCell.swift */; };
+		91D0A51B21A7F37C002B1409 /* AccountRegisterWebCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A51921A7F37C002B1409 /* AccountRegisterWebCell.swift */; };
+		91D0A51C21A7F37C002B1409 /* AccountRegisterWebCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D0A51A21A7F37C002B1409 /* AccountRegisterWebCell.xib */; };
+		91D0A51E21A80E5C002B1409 /* CapitalizeFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A51D21A80E5C002B1409 /* CapitalizeFirstLetter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +97,9 @@
 		91D0A51121A6CC21002B1409 /* AccountRegisterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountRegisterCell.xib; sourceTree = "<group>"; };
 		91D0A51421A6CD8F002B1409 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		91D0A51621A6DD39002B1409 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		91D0A51921A7F37C002B1409 /* AccountRegisterWebCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterWebCell.swift; sourceTree = "<group>"; };
+		91D0A51A21A7F37C002B1409 /* AccountRegisterWebCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountRegisterWebCell.xib; sourceTree = "<group>"; };
+		91D0A51D21A80E5C002B1409 /* CapitalizeFirstLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalizeFirstLetter.swift; sourceTree = "<group>"; };
 		B7F3915861C98E2BF1CC5704 /* Pods-TMDb.iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDb.iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TMDb.iOS/Pods-TMDb.iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EDB81B3D183DC07F7AA11F5D /* Pods-TMDb.iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDb.iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TMDb.iOS/Pods-TMDb.iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -208,6 +214,7 @@
 				9104503221A552CD0053142F /* LoadingIndicator.swift */,
 				91D0A51421A6CD8F002B1409 /* RoundedButton.swift */,
 				91D0A51621A6DD39002B1409 /* Account.swift */,
+				91D0A51D21A80E5C002B1409 /* CapitalizeFirstLetter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +236,8 @@
 				91D0A50D21A6CC0A002B1409 /* AccountAuthorizationCell.xib */,
 				91D0A51021A6CC21002B1409 /* AccountRegisterCell.swift */,
 				91D0A51121A6CC21002B1409 /* AccountRegisterCell.xib */,
+				91D0A51921A7F37C002B1409 /* AccountRegisterWebCell.swift */,
+				91D0A51A21A7F37C002B1409 /* AccountRegisterWebCell.xib */,
 			);
 			path = AccountCell;
 			sourceTree = "<group>";
@@ -342,6 +351,7 @@
 				911E4A0A21A3F49E004BE962 /* MovieDetailCell.xib in Resources */,
 				915667F721941B15004AF88A /* MovieGenresCell.xib in Resources */,
 				9108679F2191B39000A28568 /* MovieCell.xib in Resources */,
+				91D0A51C21A7F37C002B1409 /* AccountRegisterWebCell.xib in Resources */,
 				910867832191626600A28568 /* Main.storyboard in Resources */,
 				91D0A51321A6CC21002B1409 /* AccountRegisterCell.xib in Resources */,
 				915667F12193E27D004AF88A /* GenreCell.xib in Resources */,
@@ -411,8 +421,8 @@
 				9108677E2191626600A28568 /* AppDelegate.swift in Sources */,
 				9104503321A552CD0053142F /* LoadingIndicator.swift in Sources */,
 				910867A22191B8FF00A28568 /* MovieListService.swift in Sources */,
+				91D0A51B21A7F37C002B1409 /* AccountRegisterWebCell.swift in Sources */,
 				9104503521A568F70053142F /* ActorDetailVC.swift in Sources */,
-				91D0A51221A6CC21002B1409 /* AccountRegisterCell.swift in Sources */,
 				915667F02193E27D004AF88A /* GenreCell.swift in Sources */,
 				915667F921942880004AF88A /* MovieDetailVC.swift in Sources */,
 				915667E92192D7CD004AF88A /* MainTabBarViewController.swift in Sources */,
@@ -423,6 +433,7 @@
 				915667ED2193E1FB004AF88A /* GenresVC.swift in Sources */,
 				915667F3219419ED004AF88A /* MoviesByGenresVC.swift in Sources */,
 				915667E721928F2B004AF88A /* Movie.swift in Sources */,
+				91D0A51821A7DC20002B1409 /* AccountRegisterCell.swift in Sources */,
 				911CE0A621A6C5CE00EC4BB9 /* UserVC.swift in Sources */,
 				9108679E2191B39000A28568 /* MovieCell.swift in Sources */,
 				911CE0A221A6C4D200EC4BB9 /* TransitionVC.swift in Sources */,
@@ -431,6 +442,7 @@
 				911CE09A21A6989300EC4BB9 /* AccountService.swift in Sources */,
 				9104503821A56E9C0053142F /* ActorListService.swift in Sources */,
 				91D0A50E21A6CC0A002B1409 /* AccountAuthorizationCell.swift in Sources */,
+				91D0A51E21A80E5C002B1409 /* CapitalizeFirstLetter.swift in Sources */,
 				911E4A0921A3F49E004BE962 /* MovieDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
