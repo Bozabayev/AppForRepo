@@ -49,16 +49,37 @@
                             <constraint firstAttribute="trailing" secondItem="Fsf-i5-vH1" secondAttribute="trailing" constant="8" id="w35-fc-rD6"/>
                         </constraints>
                     </stackView>
+                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUV-5d-NkW" customClass="RoundedButton" customModule="TMDb_iOS" customModuleProvider="target">
+                        <rect key="frame" x="286" y="21" width="50" height="50"/>
+                        <color key="backgroundColor" red="0.1666047447637018" green="0.15867284330960307" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="N1A-bO-1a6"/>
+                            <constraint firstAttribute="width" constant="50" id="e52-Ag-GI9"/>
+                        </constraints>
+                        <state key="normal" image="star"/>
+                        <state key="selected" image="star-3"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="25"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="favoriteMovieBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JXM-vf-iX9"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="hQt-6Z-Qlp" secondAttribute="bottom" id="5vB-79-dwa"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="PUV-5d-NkW" secondAttribute="trailing" constant="10" id="Izn-DH-1IV"/>
                     <constraint firstItem="hQt-6Z-Qlp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="UFN-Mj-BSA"/>
                     <constraint firstItem="hQt-6Z-Qlp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bOB-xy-IEF"/>
+                    <constraint firstItem="PUV-5d-NkW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="jNv-NE-5FN"/>
                     <constraint firstAttribute="trailing" secondItem="hQt-6Z-Qlp" secondAttribute="trailing" id="rJu-X6-RFD"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="favoriteBtn" destination="PUV-5d-NkW" id="L99-7F-2SZ"/>
                 <outlet property="overView" destination="Fsf-i5-vH1" id="MGt-td-yhm"/>
                 <outlet property="posterImg" destination="MM4-Ih-HOy" id="cSH-Fs-33F"/>
                 <outlet property="posterTitle" destination="gU3-h5-aLC" id="LQe-rT-DvJ"/>
@@ -66,4 +87,8 @@
             <point key="canvasLocation" x="171.19999999999999" y="204.19790104947529"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="star" width="25.600000381469727" height="25.600000381469727"/>
+        <image name="star-3" width="25.600000381469727" height="25.600000381469727"/>
+    </resources>
 </document>

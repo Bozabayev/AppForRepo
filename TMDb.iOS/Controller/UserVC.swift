@@ -32,6 +32,7 @@ class UserVC: UIViewController, ChangeAvatarDelegate {
         let backItem = UIBarButtonItem()
         backItem.title = "Назад"
         navigationItem.backBarButtonItem = backItem
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +46,10 @@ class UserVC: UIViewController, ChangeAvatarDelegate {
     
     
     
+   
+    
+    
+    
     func loadAccountDetail() {
         providerAccount.request(.accountDetail(sessionID: UserDataService.instance.sessionID)) { [weak self](result) in
             guard let strongSelf = self else {return}
@@ -53,7 +58,6 @@ class UserVC: UIViewController, ChangeAvatarDelegate {
                 do {
                     let jsonData = try response.mapJSON() as! [String: Any]
                     strongSelf.accounts = Account(JSON: jsonData)
-                    print(strongSelf.accounts?.username)
                     strongSelf.tableView.reloadData()
                     guard let id = strongSelf.accounts?.id else {return}
                     UserDataService.instance.setAccountId(accountId: id)
@@ -95,13 +99,15 @@ extension UserVC: UITableViewDelegate, UITableViewDataSource {
         case firstIndex:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: firstIndex) as? UserCell {
                 cell.delegateButton = self
-                guard let userName = self.accounts?.username else {return UITableViewCell()}
-                print(userName)
-                cell.userNameLbl.text = "Username: \(String(describing: accountName))"
+                guard let userName = self.accounts?.username! else {return cell}
+                cell.userNameLbl.text = "Username: \(String(describing: userName))"
                 if UserDataService.instance.avatarName == "" {
                     cell.avatarImg.image = #imageLiteral(resourceName: "man-2")
                 } else {
-                cell.avatarImg.image = UIImage(named: "\(UserDataService.instance.avatarName)")
+                    cell.avatarImg.image = UIImage(named: "\(UserDataService.instance.avatarName)")!
+                    cell.avatarImg.layer.backgroundColor = UIColor.lightGray.cgColor
+                    cell.avatarImg.layer.cornerRadius = 10
+                    cell.avatarImg.clipsToBounds = true
                 }
                
                 return cell

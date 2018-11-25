@@ -9,12 +9,19 @@
 import UIKit
 import SDWebImage
 
+protocol FavoriteMovieDelegate {
+    func favoriteMovie()
+}
+
 class MovieDetailCell: UITableViewCell {
     
     
+    @IBOutlet weak var favoriteBtn: RoundedButton!
     @IBOutlet weak var overView: UILabel!
     @IBOutlet weak var posterTitle: UILabel!
     @IBOutlet weak var posterImg: UIImageView!
+    
+    var delegate : FavoriteMovieDelegate?
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -22,11 +29,14 @@ class MovieDetailCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
     
 
 
+    @IBAction func favoriteMovieBtnPressed(_ sender: Any) {
+        delegate?.favoriteMovie()
+    }
     
     
     func configureCell(movie: Movie) {

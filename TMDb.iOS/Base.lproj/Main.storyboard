@@ -389,6 +389,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gnO-lQ-OY0"/>
                     </view>
+                    <navigationItem key="navigationItem" id="qM0-gb-n2L"/>
                     <connections>
                         <outlet property="tableView" destination="CUr-kS-wkd" id="z10-EG-8WL"/>
                         <segue destination="Ti2-ng-uQL" kind="show" identifier="AvatarPickerVC" id="cXm-ZE-Z8E"/>
@@ -473,7 +474,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="XnR-hL-hEr" kind="relationship" relationship="rootViewController" id="4Jq-j7-D1T"/>
+                        <segue destination="XnR-hL-hEr" kind="relationship" relationship="rootViewController" id="Wyh-jw-Ggn"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cu3-7g-YG1" userLabel="First Responder" sceneMemberID="firstResponder"/>

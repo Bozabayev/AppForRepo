@@ -13,7 +13,9 @@ var pageNumberOfSimilarMovies : Int? = 1
 
 
 
-class MovieDetailVC: UIViewController {
+class MovieDetailVC: UIViewController, FavoriteMovieDelegate {
+    
+    
 
     
     var movieDetail : Movie?
@@ -39,6 +41,13 @@ class MovieDetailVC: UIViewController {
         let backItem = UIBarButtonItem()
         backItem.title = "Назад"
         navigationItem.backBarButtonItem = backItem
+    }
+    
+    
+    
+    
+    func favoriteMovie() {
+        markFavoriteMovie()
     }
 
  
@@ -76,7 +85,6 @@ class MovieDetailVC: UIViewController {
                     let jsonData = try response.mapJSON() as! [String: Any]
                     let array = jsonData["results"] as! [[String: Any]]
                     strongSelf.movies = array.map({Movie(JSON: $0)!})
-                    print(strongSelf.movies.count)
                     strongSelf.tableView.reloadData()
                     LoadingIndicator().hideActivityIndicator(uiView: strongSelf.view)
                 } catch {
@@ -90,12 +98,26 @@ class MovieDetailVC: UIViewController {
     
     
     
-//    func markFavoriteMovie() {
-//        guard let id = movieDetail?.id else {return}
-//        providerAccount.request(.markFavoriteMovie(accountID: <#T##Int#>, sessionID: sessionId, id: id)) { (<#Result<Response, MoyaError>#>) in
-//            <#code#>
-//        }
-//    }
+    func markFavoriteMovie() {
+        guard let id = movieDetail?.id else {return}
+        UserDataService.instance.setMovieId(movieId: id)
+        providerAccount.request(.markFavoriteMovie(accountID: UserDataService.instance.accountID)) { [weak self](result) in
+            guard let strongSelf = self else {return}
+            switch result {
+            case .success(let response):
+                do {
+                    let jsonData = try response.mapJSON() as! [String : Any]
+                    print(jsonData["status_message"]!)
+                    
+                    
+                } catch {
+                    print("Mapping error")
+                }
+            case .failure(let error):
+                print("error: \(error)")
+            }
+        }
+    }
     
 
    
@@ -118,6 +140,12 @@ extension MovieDetailVC : UITableViewDelegate, UITableViewDataSource {
         if firstIndex == indexPath{
             if let firstCell = tableView.dequeueReusableCell(withIdentifier: "MovieDetailCell", for: firstIndex) as? MovieDetailCell {
                 guard let unwMovie = movieDetail else {return UITableViewCell()}
+                firstCell.delegate = self
+                if UserDataService.instance.sessionID != "" {
+                    firstCell.favoriteBtn.isHidden = false
+                } else {
+                    firstCell.favoriteBtn.isHidden = true
+                }
                 firstCell.configureCell(movie: unwMovie)
                 return firstCell
             }else {

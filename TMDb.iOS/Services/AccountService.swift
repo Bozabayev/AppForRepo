@@ -20,7 +20,7 @@ enum AccountService {
     case createSession(request_token : String)
     case accountDetail(sessionID: String)
     case getFavoriteMovies(accountID: Int, sessionID: String)
-    case markFavoriteMovie(accountID: Int, sessionID: String, id: Int)
+    case markFavoriteMovie(accountID: Int)
 }
 
 
@@ -70,8 +70,8 @@ extension AccountService : TargetType {
             return .requestParameters(parameters: ["api_key" : api_key, "session_id" : sessionID], encoding: URLEncoding.default)
         case .getFavoriteMovies(let sessionId):
             return .requestParameters(parameters: ["api_key" : api_key, "session_id" : sessionId], encoding: URLEncoding.default)
-        case .markFavoriteMovie(let sessionId , let id, let accountID):
-            return .requestCompositeParameters(bodyParameters: ["media_type" : "movie", "media_id" : id, "favorite" : true], bodyEncoding: JSONEncoding.default, urlParameters: ["api_key" : api_key, "session_id" : sessionId])
+        case .markFavoriteMovie:
+            return .requestCompositeParameters(bodyParameters: ["media_type" : "movie", "media_id" : UserDataService.instance.movieID, "favorite" : true], bodyEncoding: JSONEncoding.default, urlParameters: ["api_key" : api_key, "session_id" : UserDataService.instance.sessionID])
             
         }
     }
@@ -79,7 +79,7 @@ extension AccountService : TargetType {
     var headers: [String : String]? {
         switch self {
         case .markFavoriteMovie:
-            return ["application/json" : "charset=utf-8"]
+            return ["Content-Type": "application/json; charset=utf-8"]
         case .accountDetail, .createSession, .getFavoriteMovies, .requestLoginToken, .requestToken:
             return nil
         }

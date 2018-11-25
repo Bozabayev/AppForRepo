@@ -101,10 +101,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="avatarImg" destination="SCz-rw-9tm" id="0xK-hc-mJl"/>
-                <outlet property="favoriteMoviesLbl" destination="xLJ-6C-nYW" id="Gva-DM-FgJ"/>
-                <outlet property="ratedMoviesLbl" destination="KrU-aO-Oee" id="Eia-uW-B4c"/>
-                <outlet property="userNameLbl" destination="6ex-cm-XaR" id="dPt-rh-hHP"/>
+                <outlet property="avatarImg" destination="SCz-rw-9tm" id="eGj-dT-ddE"/>
+                <outlet property="favoriteMoviesLbl" destination="xLJ-6C-nYW" id="0En-R7-qGV"/>
+                <outlet property="ratedMoviesLbl" destination="KrU-aO-Oee" id="kzE-eQ-nsH"/>
+                <outlet property="userNameLbl" destination="6ex-cm-XaR" id="MaY-8r-SEJ"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="168.6656671664168"/>
         </tableViewCell>

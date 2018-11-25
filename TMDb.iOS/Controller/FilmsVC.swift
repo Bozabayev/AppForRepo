@@ -57,6 +57,9 @@ class FilmsVC: UIViewController{
         self.tableView.register(nib, forCellReuseIdentifier: "movieCell")
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
+       print( tabBarController?.viewControllers)
+        
+        
     }
     
     @IBAction func segmentControl(_ sender: Any) {
@@ -112,7 +115,6 @@ class FilmsVC: UIViewController{
                     let jsonData = try response.mapJSON() as! [String: Any]
                     let array = jsonData["results"] as! [[String: Any]]
                     strongSelf.popularMovies += array.map({Movie(JSON: $0)!})
-                    print(strongSelf.popularMovies)
                     strongSelf.tableView.reloadData()
                 } catch {
                     print("Mapping Error")

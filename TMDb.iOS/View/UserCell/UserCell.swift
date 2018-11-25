@@ -18,10 +18,13 @@ protocol ChangeAvatarDelegate: class {
 class UserCell: UITableViewCell {
     
   
+    
+    
     @IBOutlet weak var ratedMoviesLbl: UILabel!
     @IBOutlet weak var favoriteMoviesLbl: UILabel!
     @IBOutlet weak var userNameLbl: UILabel!
     @IBOutlet weak var avatarImg: UIImageView!
+    
     public weak var delegateButton : ChangeAvatarDelegate?
     
     override func prepareForReuse() {
@@ -41,12 +44,7 @@ class UserCell: UITableViewCell {
         delegateButton?.changeAvatarButton()
     }
     
-    func configureCell( username: String){
-        userNameLbl.text = "Username: \(username)"
-        
-       
-        
-    }
+    
     
     
     
