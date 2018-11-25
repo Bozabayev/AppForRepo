@@ -40,7 +40,7 @@ class LoadingIndicator {
     }
     
     
-    func hideActivityIndicator(uiView: UIView) {
+  @objc  func hideActivityIndicator(uiView: UIView) {
         activityIndicator.stopAnimating()
         container.removeFromSuperview()
         if let viewWithTag = uiView.viewWithTag(100) {

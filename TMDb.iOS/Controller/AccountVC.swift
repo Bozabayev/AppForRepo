@@ -14,7 +14,7 @@ fileprivate enum SegmentType {
         case registration
 }
 
-var sessionId : String? = ""
+//var sessionId : String? = ""
 
 
 class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegate, CreateAccButtonTapDelegate, LoginTextDelegate {
@@ -25,14 +25,15 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
    
    
     
-
+    
     @IBOutlet weak var segmentedController: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
-   fileprivate let authorizationNib = UINib(nibName: "AccountAuthorizationCell", bundle: nil)
-   fileprivate let registrationNib = UINib(nibName: "AccountRegisterCell", bundle: nil)
+    fileprivate let authorizationNib = UINib(nibName: "AccountAuthorizationCell", bundle: nil)
+    fileprivate let registrationNib = UINib(nibName: "AccountRegisterCell", bundle: nil)
     fileprivate let webNib = UINib(nibName: "AccountRegisterWebCell", bundle: nil)
     let alert = UIAlertController(title: "Ooops", message: "Invalid data", preferredStyle: UIAlertController.Style.alert)
-   fileprivate let provider = MoyaProvider<AccountService>()
+    var timer = Timer()
+    fileprivate let provider = MoyaProvider<AccountService>()
     fileprivate var accounts : Account?
     fileprivate var segmentType = SegmentType.authorization {
         didSet {
@@ -49,6 +50,8 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
         self.tableView.register(webNib, forCellReuseIdentifier: "AccountRegisterWebCell")
        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
        alert.view.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        navigationItem.title = "Аккаунт"
+        
     }
     
     @IBAction func segmentSwitched(_ sender: Any) {
@@ -57,10 +60,18 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
             segmentType = .authorization
         case 1:
             segmentType = .registration
+            LoadingIndicator().showActivityIndicator(uiView: self.view)
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(AccountVC.endLoadIndicator), userInfo: nil, repeats: false)
         default:
             segmentType = .authorization
         }
         
+    }
+    
+    
+    @objc func endLoadIndicator() {
+        LoadingIndicator().hideActivityIndicator(uiView: self.view)
     }
     
     
@@ -85,10 +96,6 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
     func createTapButton() {
         tableView.reloadData()
         requestToken()
-
-//        requestLoginToken()
-//        requestSessionId()
-//        print(sessionId)
         
     }
     
@@ -121,7 +128,6 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
                 do {
                     let jsonData = try response.mapJSON() as! [String : Any]
                     strongSelf.accounts?.request_token = (jsonData["request_token"] as? String)
-                    print(strongSelf.accounts?.request_token)
                     if strongSelf.accounts?.request_token == nil {
                         strongSelf.present(strongSelf.alert, animated: true, completion: nil)
                     } else {
@@ -148,8 +154,9 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
             case .success(let response):
                 do {
                     let jsonData = try response.mapJSON() as! [String : Any]
-                    sessionId = jsonData["session_id"] as? String
-                    if sessionId != "" {
+                  let  sessionId = jsonData["session_id"] as? String
+                    UserDataService.instance.setSessionId(sessionId: sessionId!)
+                    if UserDataService.instance.sessionID != "" {
                         strongSelf.pushView()
                     } else {
                         strongSelf.present(strongSelf.alert, animated: true, completion: nil)
@@ -166,14 +173,11 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
     
     func pushView() {
         let stroryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = stroryboard.instantiateViewController(withIdentifier: "UserVC")
+        let vc = stroryboard.instantiateViewController(withIdentifier: "UserVC") as! UserVC
+        vc.accountName = accounts?.username
         navigationController?.pushViewController(vc, animated: true)
         
     }
-    
-    
-    
-    
     
     
   

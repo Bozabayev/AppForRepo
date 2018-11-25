@@ -23,6 +23,7 @@ class MovieDetailVC: UIViewController {
     let nibDetail = UINib(nibName: "MovieDetailCell", bundle: nil)
     let nibCollection = UINib(nibName: "MovieDetailCollection", bundle: nil)
     let provider = MoyaProvider<MovieListService>()
+    let providerAccount = MoyaProvider<AccountService>()
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -86,6 +87,15 @@ class MovieDetailVC: UIViewController {
             }
         }
     }
+    
+    
+    
+//    func markFavoriteMovie() {
+//        guard let id = movieDetail?.id else {return}
+//        providerAccount.request(.markFavoriteMovie(accountID: <#T##Int#>, sessionID: sessionId, id: id)) { (<#Result<Response, MoyaError>#>) in
+//            <#code#>
+//        }
+//    }
     
 
    

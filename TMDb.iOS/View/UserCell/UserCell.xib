@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="173" id="KGk-i7-Jjw" customClass="UserCell" customModule="TMDb_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="173"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="172.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="man-2" translatesAutoresizingMaskIntoConstraints="NO" id="SCz-rw-9tm">
+                        <rect key="frame" x="12" y="12" width="120" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="GfR-31-YfI"/>
+                            <constraint firstAttribute="height" constant="120" id="VUw-Ri-RLD"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ex-cm-XaR">
+                        <rect key="frame" x="140" y="12" width="176" height="17.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="T1O-Aj-tDG">
+                        <rect key="frame" x="140" y="34.5" width="176" height="17.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Favorite Movies:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYc-Zu-13S">
+                                <rect key="frame" x="0.0" y="0.0" width="125.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLJ-6C-nYW">
+                                <rect key="frame" x="168.5" y="0.0" width="7.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="52" translatesAutoresizingMaskIntoConstraints="NO" id="fj5-bl-cqv">
+                        <rect key="frame" x="140" y="60" width="176" height="17.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Rated Movies:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOb-Ls-y8a">
+                                <rect key="frame" x="0.0" y="0.0" width="116.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrU-aO-Oee">
+                                <rect key="frame" x="168.5" y="0.0" width="7.5" height="17.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jY-kg-505" customClass="RoundedButton" customModule="TMDb_iOS" customModuleProvider="target">
+                        <rect key="frame" x="12" y="140" width="120" height="31"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                        <state key="normal" title="Change Avatar">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="changeAvatarBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ppk-DH-4WB"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0jY-kg-505" firstAttribute="leading" secondItem="SCz-rw-9tm" secondAttribute="leading" id="Aqy-fa-6PX"/>
+                    <constraint firstItem="6ex-cm-XaR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="EZ4-Sd-SoY"/>
+                    <constraint firstItem="fj5-bl-cqv" firstAttribute="top" secondItem="T1O-Aj-tDG" secondAttribute="bottom" constant="8" id="Fhz-5w-ZCA"/>
+                    <constraint firstAttribute="trailing" secondItem="T1O-Aj-tDG" secondAttribute="trailing" constant="4" id="OA0-UU-yQu"/>
+                    <constraint firstItem="T1O-Aj-tDG" firstAttribute="top" secondItem="6ex-cm-XaR" secondAttribute="bottom" constant="5" id="Okd-Yn-MHC"/>
+                    <constraint firstItem="0jY-kg-505" firstAttribute="top" secondItem="SCz-rw-9tm" secondAttribute="bottom" constant="8" id="eMD-tu-91b"/>
+                    <constraint firstAttribute="trailing" secondItem="6ex-cm-XaR" secondAttribute="trailing" constant="4" id="h3q-GN-aTL"/>
+                    <constraint firstItem="6ex-cm-XaR" firstAttribute="leading" secondItem="SCz-rw-9tm" secondAttribute="trailing" constant="8" id="jer-di-MOW"/>
+                    <constraint firstItem="0jY-kg-505" firstAttribute="trailing" secondItem="SCz-rw-9tm" secondAttribute="trailing" id="lJV-Zb-4Rg"/>
+                    <constraint firstItem="T1O-Aj-tDG" firstAttribute="leading" secondItem="SCz-rw-9tm" secondAttribute="trailing" constant="8" id="lkR-QW-9PR"/>
+                    <constraint firstItem="SCz-rw-9tm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="pdY-rb-irp"/>
+                    <constraint firstItem="fj5-bl-cqv" firstAttribute="leading" secondItem="SCz-rw-9tm" secondAttribute="trailing" constant="8" id="sGv-PN-kYa"/>
+                    <constraint firstItem="SCz-rw-9tm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="x0T-52-RxE"/>
+                    <constraint firstAttribute="trailing" secondItem="fj5-bl-cqv" secondAttribute="trailing" constant="4" id="zrP-uW-nH8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="avatarImg" destination="SCz-rw-9tm" id="0xK-hc-mJl"/>
+                <outlet property="favoriteMoviesLbl" destination="xLJ-6C-nYW" id="Gva-DM-FgJ"/>
+                <outlet property="ratedMoviesLbl" destination="KrU-aO-Oee" id="Eia-uW-B4c"/>
+                <outlet property="userNameLbl" destination="6ex-cm-XaR" id="dPt-rh-hHP"/>
+            </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="168.6656671664168"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="man-2" width="204.80000305175781" height="204.80000305175781"/>
+    </resources>
+</document>

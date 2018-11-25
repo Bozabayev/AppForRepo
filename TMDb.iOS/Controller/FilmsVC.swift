@@ -55,7 +55,6 @@ class FilmsVC: UIViewController{
         loadPopularMovies()
         loadUpcomingMovies()
         self.tableView.register(nib, forCellReuseIdentifier: "movieCell")
-        self.tableView.rowHeight = 170.0
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         
     }
@@ -149,6 +148,11 @@ class FilmsVC: UIViewController{
 
 extension FilmsVC: UITableViewDataSource, UITableViewDelegate {
 
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if movieType == .popular {

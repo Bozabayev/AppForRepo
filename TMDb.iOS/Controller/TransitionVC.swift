@@ -8,7 +8,7 @@
 
 import UIKit
 
- var transitionNumber = 1
+
 
 class TransitionVC: UIViewController {
 
@@ -17,11 +17,15 @@ class TransitionVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil )
         let accountVC = storyboard.instantiateViewController(withIdentifier: "AccountVC")
         let userVC = storyboard.instantiateViewController(withIdentifier: "UserVC")
-        if sessionId == "" {
-        self.navigationController?.pushViewController(accountVC, animated: false)
+        if UserDataService.instance.sessionID == "" {
+            self.navigationController?.pushViewController(accountVC, animated: false)
         } else  {
             self.navigationController?.pushViewController(userVC, animated: false)
         }

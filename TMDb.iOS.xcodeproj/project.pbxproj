@@ -51,6 +51,12 @@
 		91D0A51B21A7F37C002B1409 /* AccountRegisterWebCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A51921A7F37C002B1409 /* AccountRegisterWebCell.swift */; };
 		91D0A51C21A7F37C002B1409 /* AccountRegisterWebCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D0A51A21A7F37C002B1409 /* AccountRegisterWebCell.xib */; };
 		91D0A51E21A80E5C002B1409 /* CapitalizeFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A51D21A80E5C002B1409 /* CapitalizeFirstLetter.swift */; };
+		91D0A52221A8222C002B1409 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A52021A8222C002B1409 /* UserCell.swift */; };
+		91D0A52321A8222C002B1409 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D0A52121A8222C002B1409 /* UserCell.xib */; };
+		91D0A52521A83B28002B1409 /* AvatarPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A52421A83B28002B1409 /* AvatarPickerVC.swift */; };
+		91D0A52B21AA83AD002B1409 /* AvatarPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A52921AA83AD002B1409 /* AvatarPickerCell.swift */; };
+		91D0A52C21AA83AD002B1409 /* AvatarPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D0A52A21AA83AD002B1409 /* AvatarPickerCell.xib */; };
+		91D0A52E21AA861A002B1409 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A52D21AA861A002B1409 /* UserDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +106,12 @@
 		91D0A51921A7F37C002B1409 /* AccountRegisterWebCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterWebCell.swift; sourceTree = "<group>"; };
 		91D0A51A21A7F37C002B1409 /* AccountRegisterWebCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountRegisterWebCell.xib; sourceTree = "<group>"; };
 		91D0A51D21A80E5C002B1409 /* CapitalizeFirstLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalizeFirstLetter.swift; sourceTree = "<group>"; };
+		91D0A52021A8222C002B1409 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		91D0A52121A8222C002B1409 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
+		91D0A52421A83B28002B1409 /* AvatarPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerVC.swift; sourceTree = "<group>"; };
+		91D0A52921AA83AD002B1409 /* AvatarPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerCell.swift; sourceTree = "<group>"; };
+		91D0A52A21AA83AD002B1409 /* AvatarPickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AvatarPickerCell.xib; sourceTree = "<group>"; };
+		91D0A52D21AA861A002B1409 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		B7F3915861C98E2BF1CC5704 /* Pods-TMDb.iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDb.iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TMDb.iOS/Pods-TMDb.iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EDB81B3D183DC07F7AA11F5D /* Pods-TMDb.iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDb.iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TMDb.iOS/Pods-TMDb.iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +200,7 @@
 				911CE09621A6975400EC4BB9 /* AccountVC.swift */,
 				911CE0A121A6C4D200EC4BB9 /* TransitionVC.swift */,
 				911CE0A521A6C5CE00EC4BB9 /* UserVC.swift */,
+				91D0A52421A83B28002B1409 /* AvatarPickerVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -195,6 +208,8 @@
 		91086793219170AD00A28568 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				91D0A52621AA82D5002B1409 /* AvatarPickerCell */,
+				91D0A51F21A8220F002B1409 /* UserCell */,
 				911CE09821A6977800EC4BB9 /* AccountCell */,
 				9104503621A56E440053142F /* ActorDetailCell */,
 				911E4A0621A3F470004BE962 /* MovieDetailCell */,
@@ -225,6 +240,7 @@
 				910867A12191B8FF00A28568 /* MovieListService.swift */,
 				9104503721A56E9C0053142F /* ActorListService.swift */,
 				911CE09921A6989300EC4BB9 /* AccountService.swift */,
+				91D0A52D21AA861A002B1409 /* UserDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -280,6 +296,24 @@
 				911E4A1421A3FA21004BE962 /* MovieDetailCollectionCell.xib */,
 			);
 			path = MovieDetailCell;
+			sourceTree = "<group>";
+		};
+		91D0A51F21A8220F002B1409 /* UserCell */ = {
+			isa = PBXGroup;
+			children = (
+				91D0A52021A8222C002B1409 /* UserCell.swift */,
+				91D0A52121A8222C002B1409 /* UserCell.xib */,
+			);
+			path = UserCell;
+			sourceTree = "<group>";
+		};
+		91D0A52621AA82D5002B1409 /* AvatarPickerCell */ = {
+			isa = PBXGroup;
+			children = (
+				91D0A52921AA83AD002B1409 /* AvatarPickerCell.swift */,
+				91D0A52A21AA83AD002B1409 /* AvatarPickerCell.xib */,
+			);
+			path = AvatarPickerCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,7 +382,9 @@
 				9104503C21A575C40053142F /* ActorDetailCell.xib in Resources */,
 				911E4A1221A3F9A0004BE962 /* MovieDetailCollection.xib in Resources */,
 				910867882191626700A28568 /* Assets.xcassets in Resources */,
+				91D0A52321A8222C002B1409 /* UserCell.xib in Resources */,
 				911E4A0A21A3F49E004BE962 /* MovieDetailCell.xib in Resources */,
+				91D0A52C21AA83AD002B1409 /* AvatarPickerCell.xib in Resources */,
 				915667F721941B15004AF88A /* MovieGenresCell.xib in Resources */,
 				9108679F2191B39000A28568 /* MovieCell.xib in Resources */,
 				91D0A51C21A7F37C002B1409 /* AccountRegisterWebCell.xib in Resources */,
@@ -419,11 +455,14 @@
 				9108679A2191B1E400A28568 /* FilmsVC.swift in Sources */,
 				911E4A0221A3F048004BE962 /* Cast.swift in Sources */,
 				9108677E2191626600A28568 /* AppDelegate.swift in Sources */,
+				91D0A52B21AA83AD002B1409 /* AvatarPickerCell.swift in Sources */,
+				91D0A52521A83B28002B1409 /* AvatarPickerVC.swift in Sources */,
 				9104503321A552CD0053142F /* LoadingIndicator.swift in Sources */,
 				910867A22191B8FF00A28568 /* MovieListService.swift in Sources */,
 				91D0A51B21A7F37C002B1409 /* AccountRegisterWebCell.swift in Sources */,
 				9104503521A568F70053142F /* ActorDetailVC.swift in Sources */,
 				915667F02193E27D004AF88A /* GenreCell.swift in Sources */,
+				91D0A52E21AA861A002B1409 /* UserDataService.swift in Sources */,
 				915667F921942880004AF88A /* MovieDetailVC.swift in Sources */,
 				915667E92192D7CD004AF88A /* MainTabBarViewController.swift in Sources */,
 				911E4A1521A3FA21004BE962 /* MovieDetailCollectionCell.swift in Sources */,
@@ -442,6 +481,7 @@
 				911CE09A21A6989300EC4BB9 /* AccountService.swift in Sources */,
 				9104503821A56E9C0053142F /* ActorListService.swift in Sources */,
 				91D0A50E21A6CC0A002B1409 /* AccountAuthorizationCell.swift in Sources */,
+				91D0A52221A8222C002B1409 /* UserCell.swift in Sources */,
 				91D0A51E21A80E5C002B1409 /* CapitalizeFirstLetter.swift in Sources */,
 				911E4A0921A3F49E004BE962 /* MovieDetailCell.swift in Sources */,
 			);
