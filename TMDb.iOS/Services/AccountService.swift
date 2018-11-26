@@ -19,7 +19,7 @@ enum AccountService {
     case requestLoginToken(username: String, password: String, request_token: String)
     case createSession(request_token : String)
     case accountDetail(sessionID: String)
-    case getFavoriteMovies(accountID: Int, sessionID: String)
+    case getFavoriteMovies(accountID: Int)
     case markFavoriteMovie(accountID: Int)
 }
 
@@ -68,8 +68,8 @@ extension AccountService : TargetType {
             return .requestCompositeParameters(bodyParameters: ["request_token" : request_token], bodyEncoding: JSONEncoding.default, urlParameters: ["api_key" : api_key])
         case .accountDetail(let sessionID):
             return .requestParameters(parameters: ["api_key" : api_key, "session_id" : sessionID], encoding: URLEncoding.default)
-        case .getFavoriteMovies(let sessionId):
-            return .requestParameters(parameters: ["api_key" : api_key, "session_id" : sessionId], encoding: URLEncoding.default)
+        case .getFavoriteMovies:
+            return .requestParameters(parameters: ["api_key" : api_key, "session_id" : UserDataService.instance.sessionID], encoding: URLEncoding.default)
         case .markFavoriteMovie:
             return .requestCompositeParameters(bodyParameters: ["media_type" : "movie", "media_id" : UserDataService.instance.movieID, "favorite" : true], bodyEncoding: JSONEncoding.default, urlParameters: ["api_key" : api_key, "session_id" : UserDataService.instance.sessionID])
             

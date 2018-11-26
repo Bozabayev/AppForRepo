@@ -42,6 +42,11 @@
 		915667F621941B15004AF88A /* MovieGenresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915667F421941B15004AF88A /* MovieGenresCell.swift */; };
 		915667F721941B15004AF88A /* MovieGenresCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915667F521941B15004AF88A /* MovieGenresCell.xib */; };
 		915667F921942880004AF88A /* MovieDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915667F821942880004AF88A /* MovieDetailVC.swift */; };
+		91ADDE4E21ABB374008A9DC4 /* UserCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ADDE4C21ABB374008A9DC4 /* UserCollectionView.swift */; };
+		91ADDE4F21ABB374008A9DC4 /* UserCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ADDE4D21ABB374008A9DC4 /* UserCollectionView.xib */; };
+		91ADDE5221ABB393008A9DC4 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ADDE5021ABB393008A9DC4 /* UserCollectionViewCell.swift */; };
+		91ADDE5321ABB393008A9DC4 /* UserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ADDE5121ABB393008A9DC4 /* UserCollectionViewCell.xib */; };
+		91ADDE5521ABBE0E008A9DC4 /* FavoriteMoviesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ADDE5421ABBE0E008A9DC4 /* FavoriteMoviesVC.swift */; };
 		91D0A50E21A6CC0A002B1409 /* AccountAuthorizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D0A50C21A6CC0A002B1409 /* AccountAuthorizationCell.swift */; };
 		91D0A50F21A6CC0A002B1409 /* AccountAuthorizationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D0A50D21A6CC0A002B1409 /* AccountAuthorizationCell.xib */; };
 		91D0A51321A6CC21002B1409 /* AccountRegisterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D0A51121A6CC21002B1409 /* AccountRegisterCell.xib */; };
@@ -97,6 +102,11 @@
 		915667F421941B15004AF88A /* MovieGenresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenresCell.swift; sourceTree = "<group>"; };
 		915667F521941B15004AF88A /* MovieGenresCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieGenresCell.xib; sourceTree = "<group>"; };
 		915667F821942880004AF88A /* MovieDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailVC.swift; sourceTree = "<group>"; };
+		91ADDE4C21ABB374008A9DC4 /* UserCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionView.swift; sourceTree = "<group>"; };
+		91ADDE4D21ABB374008A9DC4 /* UserCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCollectionView.xib; sourceTree = "<group>"; };
+		91ADDE5021ABB393008A9DC4 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
+		91ADDE5121ABB393008A9DC4 /* UserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCollectionViewCell.xib; sourceTree = "<group>"; };
+		91ADDE5421ABBE0E008A9DC4 /* FavoriteMoviesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteMoviesVC.swift; sourceTree = "<group>"; };
 		91D0A50C21A6CC0A002B1409 /* AccountAuthorizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAuthorizationCell.swift; sourceTree = "<group>"; };
 		91D0A50D21A6CC0A002B1409 /* AccountAuthorizationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountAuthorizationCell.xib; sourceTree = "<group>"; };
 		91D0A51021A6CC21002B1409 /* AccountRegisterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegisterCell.swift; sourceTree = "<group>"; };
@@ -201,6 +211,7 @@
 				911CE0A121A6C4D200EC4BB9 /* TransitionVC.swift */,
 				911CE0A521A6C5CE00EC4BB9 /* UserVC.swift */,
 				91D0A52421A83B28002B1409 /* AvatarPickerVC.swift */,
+				91ADDE5421ABBE0E008A9DC4 /* FavoriteMoviesVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -303,6 +314,10 @@
 			children = (
 				91D0A52021A8222C002B1409 /* UserCell.swift */,
 				91D0A52121A8222C002B1409 /* UserCell.xib */,
+				91ADDE4C21ABB374008A9DC4 /* UserCollectionView.swift */,
+				91ADDE4D21ABB374008A9DC4 /* UserCollectionView.xib */,
+				91ADDE5021ABB393008A9DC4 /* UserCollectionViewCell.swift */,
+				91ADDE5121ABB393008A9DC4 /* UserCollectionViewCell.xib */,
 			);
 			path = UserCell;
 			sourceTree = "<group>";
@@ -380,6 +395,7 @@
 				9108678B2191626700A28568 /* LaunchScreen.storyboard in Resources */,
 				911E4A1621A3FA21004BE962 /* MovieDetailCollectionCell.xib in Resources */,
 				9104503C21A575C40053142F /* ActorDetailCell.xib in Resources */,
+				91ADDE5321ABB393008A9DC4 /* UserCollectionViewCell.xib in Resources */,
 				911E4A1221A3F9A0004BE962 /* MovieDetailCollection.xib in Resources */,
 				910867882191626700A28568 /* Assets.xcassets in Resources */,
 				91D0A52321A8222C002B1409 /* UserCell.xib in Resources */,
@@ -389,6 +405,7 @@
 				9108679F2191B39000A28568 /* MovieCell.xib in Resources */,
 				91D0A51C21A7F37C002B1409 /* AccountRegisterWebCell.xib in Resources */,
 				910867832191626600A28568 /* Main.storyboard in Resources */,
+				91ADDE4F21ABB374008A9DC4 /* UserCollectionView.xib in Resources */,
 				91D0A51321A6CC21002B1409 /* AccountRegisterCell.xib in Resources */,
 				915667F12193E27D004AF88A /* GenreCell.xib in Resources */,
 			);
@@ -464,6 +481,7 @@
 				915667F02193E27D004AF88A /* GenreCell.swift in Sources */,
 				91D0A52E21AA861A002B1409 /* UserDataService.swift in Sources */,
 				915667F921942880004AF88A /* MovieDetailVC.swift in Sources */,
+				91ADDE4E21ABB374008A9DC4 /* UserCollectionView.swift in Sources */,
 				915667E92192D7CD004AF88A /* MainTabBarViewController.swift in Sources */,
 				911E4A1521A3FA21004BE962 /* MovieDetailCollectionCell.swift in Sources */,
 				91D0A51721A6DD39002B1409 /* Account.swift in Sources */,
@@ -477,11 +495,13 @@
 				9108679E2191B39000A28568 /* MovieCell.swift in Sources */,
 				911CE0A221A6C4D200EC4BB9 /* TransitionVC.swift in Sources */,
 				911CE09721A6975400EC4BB9 /* AccountVC.swift in Sources */,
+				91ADDE5521ABBE0E008A9DC4 /* FavoriteMoviesVC.swift in Sources */,
 				915667EB2192E925004AF88A /* Genre.swift in Sources */,
 				911CE09A21A6989300EC4BB9 /* AccountService.swift in Sources */,
 				9104503821A56E9C0053142F /* ActorListService.swift in Sources */,
 				91D0A50E21A6CC0A002B1409 /* AccountAuthorizationCell.swift in Sources */,
 				91D0A52221A8222C002B1409 /* UserCell.swift in Sources */,
+				91ADDE5221ABB393008A9DC4 /* UserCollectionViewCell.swift in Sources */,
 				91D0A51E21A80E5C002B1409 /* CapitalizeFirstLetter.swift in Sources */,
 				911E4A0921A3F49E004BE962 /* MovieDetailCell.swift in Sources */,
 			);

@@ -174,7 +174,6 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
     func pushView() {
         let stroryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = stroryboard.instantiateViewController(withIdentifier: "UserVC") as! UserVC
-        vc.accountName = accounts?.username
         navigationController?.pushViewController(vc, animated: true)
         
     }
