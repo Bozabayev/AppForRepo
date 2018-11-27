@@ -16,11 +16,10 @@ class GenresVC: UIViewController {
     
     
     
-    //MARK: Private variables
+    //Constants and variables
     fileprivate var genres = [Genre]()
     fileprivate var selectedGenre : Genre?
     fileprivate let provider = MoyaProvider<MovieListService>()
-    
     let nib = UINib(nibName: "GenreCell", bundle: nil)
     
     override func viewDidLoad() {
@@ -34,7 +33,7 @@ class GenresVC: UIViewController {
     
     
 
-    //MARK: Private functions
+    //Load data
     private func loadGenres() {
         provider.request(.genreList) { [weak self](result) in
             guard let strongSelf = self else {return}

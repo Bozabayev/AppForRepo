@@ -56,10 +56,6 @@ class FilmsVC: UIViewController{
         loadUpcomingMovies()
         self.tableView.register(nib, forCellReuseIdentifier: "movieCell")
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        
-       print( tabBarController?.viewControllers)
-        
-        
     }
     
     @IBAction func segmentControl(_ sender: Any) {
