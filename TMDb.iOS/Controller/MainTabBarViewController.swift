@@ -16,6 +16,7 @@ class MainTabBarViewController: UITabBarController {
     let username = keychain["username"]
     let password = keychain["password"]
     let avatarName = keychain["avatarName"]
+    let accountId = keychain["accountId"]
     var accounts : Account?
     var request_token = ""
     override func viewDidLoad() {
@@ -37,6 +38,11 @@ class MainTabBarViewController: UITabBarController {
         
         if username == "Bozik" {
             UserDataService.instance.setAvatarName(avatarName: avatarName!)
+        }
+        
+        if accountId != nil {
+            guard let id = accountId else {return}
+            UserDataService.instance.setAccountId(accountId: Int(id)!)
         }
         
     }

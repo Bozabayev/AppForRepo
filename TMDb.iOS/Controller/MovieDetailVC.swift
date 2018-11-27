@@ -20,6 +20,9 @@ class MovieDetailVC: UIViewController, FavoriteMovieDelegate {
     
     var movieDetail : Movie?
     var movies = [Movie]()
+    var favoriteMovies = [Movie]()
+    var favoriteMoviesId = [Int]()
+    var favoriteBtn : Bool?
     var movie : Movie?
     var casts = [Cast]()
     let nibDetail = UINib(nibName: "MovieDetailCell", bundle: nil)
@@ -36,18 +39,28 @@ class MovieDetailVC: UIViewController, FavoriteMovieDelegate {
         tableView.register(nibCollection, forCellReuseIdentifier: "MovieDetailCollection")
         loadMovieCast()
         loadSimilarMovies()
+        loadFavoriteMovies()
         LoadingIndicator().showActivityIndicator(uiView: self.view)
         navigationItem.title = "Описание фильма"
         let backItem = UIBarButtonItem()
         backItem.title = "Назад"
         navigationItem.backBarButtonItem = backItem
+        
+        
     }
     
     
     
+
+    
+    
     
     func favoriteMovie() {
+        if favoriteBtn == true{
         markFavoriteMovie()
+        } else {
+            removeFavoriteMovie()
+        }
     }
 
  
@@ -101,8 +114,7 @@ class MovieDetailVC: UIViewController, FavoriteMovieDelegate {
     func markFavoriteMovie() {
         guard let id = movieDetail?.id else {return}
         UserDataService.instance.setMovieId(movieId: id)
-        providerAccount.request(.markFavoriteMovie(accountID: UserDataService.instance.accountID)) { [weak self](result) in
-            guard let strongSelf = self else {return}
+        providerAccount.request(.markFavoriteMovie(accountID: UserDataService.instance.accountID)) { (result) in
             switch result {
             case .success(let response):
                 do {
@@ -119,9 +131,53 @@ class MovieDetailVC: UIViewController, FavoriteMovieDelegate {
         }
     }
     
-
-   
-
+    
+    func removeFavoriteMovie() {
+        guard let id = movieDetail?.id else {return}
+        UserDataService.instance.setMovieId(movieId: id)
+        providerAccount.request(.removeFavoriteMovie(accountID: UserDataService.instance.accountID)) { (result) in
+            switch result {
+            case .success(let response):
+                do {
+                    let jsonData = try response.mapJSON() as! [String : Any]
+                    print(jsonData["status_message"]!)
+                    
+                    
+                } catch {
+                    print("Mapping error")
+                }
+            case .failure(let error):
+                print("error: \(error)")
+            }
+        }
+    }
+    
+    func loadFavoriteMovies() {
+        providerAccount.request(.getFavoriteMovies(accountID: UserDataService.instance.accountID)) { [weak self](result) in
+            guard let strongSelf = self else {return}
+            switch result {
+            case .success(let response):
+                do {
+                    let jsonData = try response.mapJSON() as! [String: Any]
+                    let array = jsonData["results"] as! [[String : Any]]
+                    strongSelf.favoriteMovies = array.map({Movie(JSON: $0)!})
+                    
+                    for movie in strongSelf.favoriteMovies{
+                        guard let id = movie.id else {return}
+                        strongSelf.favoriteMoviesId.append(id)
+                    }
+                    strongSelf.tableView.reloadData()
+                } catch {
+                    print("Mapping error")
+                    
+                }
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    
 }
 
 extension MovieDetailVC : UITableViewDelegate, UITableViewDataSource {
@@ -146,6 +202,19 @@ extension MovieDetailVC : UITableViewDelegate, UITableViewDataSource {
                 } else {
                     firstCell.favoriteBtn.isHidden = true
                 }
+                
+                for id in favoriteMoviesId {
+                    if movieDetail?.id == id {
+                        firstCell.favoriteBtn.isSelected = true
+                        self.favoriteBtn = true
+                        break
+                    } else {
+                        firstCell.favoriteBtn.isSelected = false
+                        self.favoriteBtn = false
+                    }
+                }
+                
+                
                 firstCell.configureCell(movie: unwMovie)
                 return firstCell
             }else {

@@ -18,6 +18,7 @@ class UserDataService {
     private(set) public var accountID = 0
     private(set) public var sessionID = ""
      private(set) public var movieID = 0
+    private(set) public var favoriteMoviesID = [Int]()
     
     func setAvatarName(avatarName: String) {
         self.avatarName = avatarName
@@ -33,6 +34,11 @@ class UserDataService {
     
     func setMovieId(movieId: Int) {
         self.movieID = movieId
+    }
+    
+    
+    func setFavoriteMoviesId(favoriteMoviesID: [Int]) {
+        self.favoriteMoviesID.append(contentsOf: favoriteMoviesID)
     }
     
     

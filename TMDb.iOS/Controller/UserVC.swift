@@ -22,7 +22,6 @@ class UserVC: UIViewController, ChangeAvatarDelegate, FavoriteMoviesDelegate {
         super.viewDidLoad()
         setUpView()
         loadAccountDetail()
-        loadFavoriteMovies()
         LoadingIndicator().showActivityIndicator(uiView: self.view)
     }
     
@@ -44,8 +43,7 @@ class UserVC: UIViewController, ChangeAvatarDelegate, FavoriteMoviesDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadFavoriteMovies()
-        tableView.reloadData()
+        loadAccountDetail()
     }
     
     
@@ -55,7 +53,7 @@ class UserVC: UIViewController, ChangeAvatarDelegate, FavoriteMoviesDelegate {
     
     func favoriteMoviesBtn() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc  = storyboard.instantiateViewController(withIdentifier: "FavoriteMoviesVC")
+        let vc  = storyboard.instantiateViewController(withIdentifier: "FavoriteMoviesVC") as! FavoriteMoviesVC
         navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -65,6 +63,7 @@ class UserVC: UIViewController, ChangeAvatarDelegate, FavoriteMoviesDelegate {
     @IBAction func logOutBtnPressed(_ sender: Any) {
         keychain["username"] = nil
         keychain["password"] = nil
+        keychain["accountId"] = nil
         UserDataService.instance.setSessionId(sessionId: "")
         let image = UIImage(named: "man")
         self.tabBarController?.tabBar.items![2].image = image
@@ -105,6 +104,8 @@ class UserVC: UIViewController, ChangeAvatarDelegate, FavoriteMoviesDelegate {
                     strongSelf.tableView.reloadData()
                     guard let id = strongSelf.accounts?.id else {return}
                     UserDataService.instance.setAccountId(accountId: id)
+                    keychain["accountId"] = "\(id)"
+                    strongSelf.loadFavoriteMovies()
                     
                 } catch {
                     print("Mapping eror")
@@ -166,8 +167,6 @@ extension UserVC: UITableViewDelegate, UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: firstIndex) as? UserCell {
                 cell.delegateButton = self
                 cell.favoriteMoviesLbl.text = "\(movies.count)"
-                guard let userName = self.accounts?.username! else {return cell}
-                cell.userNameLbl.text = "Username: \(String(describing: userName))"
                 if UserDataService.instance.avatarName == "" {
                     cell.avatarImg.image = #imageLiteral(resourceName: "man-2")
                 } else {
@@ -181,6 +180,8 @@ extension UserVC: UITableViewDelegate, UITableViewDataSource {
                     self.tabBarController?.tabBar.items![2].image = scaledImage
                     self.tabBarController?.tabBar.items![2].selectedImage = scaledImage
                 }
+                guard let userName = self.accounts?.username else {return cell}
+                cell.userNameLbl.text = "Username: \(String(describing: userName))"
                
                 return cell
             }

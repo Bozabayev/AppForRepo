@@ -22,6 +22,7 @@ enum AccountService {
     case getFavoriteMovies(accountID: Int)
     case markFavoriteMovie(accountID: Int)
     case deleteSession
+    case removeFavoriteMovie(accountID: Int)
 }
 
 
@@ -44,6 +45,8 @@ extension AccountService : TargetType {
             return "account/\(accountID)/favorite"
         case .deleteSession:
             return "authentication/session"
+        case .removeFavoriteMovie(let accountID):
+            return "account/\(accountID)/favorite"
             
         }
     }
@@ -52,7 +55,7 @@ extension AccountService : TargetType {
         switch  self {
         case .requestToken, .accountDetail, .getFavoriteMovies:
             return .get
-        case .createSession, .requestLoginToken, .markFavoriteMovie :
+        case .createSession, .requestLoginToken, .markFavoriteMovie, .removeFavoriteMovie :
             return .post
         case .deleteSession:
             return .delete
@@ -79,13 +82,15 @@ extension AccountService : TargetType {
             return .requestCompositeParameters(bodyParameters: ["media_type" : "movie", "media_id" : UserDataService.instance.movieID, "favorite" : true], bodyEncoding: JSONEncoding.default, urlParameters: ["api_key" : api_key, "session_id" : UserDataService.instance.sessionID])
         case .deleteSession:
             return .requestCompositeParameters(bodyParameters: ["session_id" : "\(UserDataService.instance.sessionID)"], bodyEncoding: JSONEncoding.default, urlParameters: ["api_key" : api_key])
+        case .removeFavoriteMovie:
+            return .requestCompositeParameters(bodyParameters: ["media_type" : "movie", "media_id" : UserDataService.instance.movieID, "favorite" : false], bodyEncoding: JSONEncoding.default, urlParameters: ["api_key" : api_key, "session_id" : UserDataService.instance.sessionID])
             
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .markFavoriteMovie:
+        case .markFavoriteMovie, .removeFavoriteMovie:
             return ["Content-Type": "application/json; charset=utf-8"]
         case .accountDetail, .createSession, .getFavoriteMovies, .requestLoginToken, .requestToken, .deleteSession:
             return nil
