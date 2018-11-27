@@ -26,7 +26,7 @@ class MoviesByGenresVC: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        self.collectionView.register(nib, forCellWithReuseIdentifier: "movieGenresCell")
+        self.collectionView.register(nib, forCellWithReuseIdentifier: "MovieGenresCell")
         loadMoviesByGenreId()
         navigationItem.title = genreName?.capitalizingFirstLetter()
         let backItem = UIBarButtonItem()
@@ -70,7 +70,7 @@ extension MoviesByGenresVC: UICollectionViewDelegate, UICollectionViewDataSource
             pageNumberOfMoviesByGenre! += 1
             loadMoviesByGenreId()
         }
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieGenresCell", for: indexPath) as? MovieGenresCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieGenresCell", for: indexPath) as? MovieGenresCell {
             let movie = self.movies[indexPath.row]
             cell.layer.cornerRadius = 7
             cell.configureCell(movie: movie)

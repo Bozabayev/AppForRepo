@@ -56,6 +56,17 @@ class FilmsVC: UIViewController{
         loadUpcomingMovies()
         self.tableView.register(nib, forCellReuseIdentifier: "movieCell")
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        setUserData()
+    }
+    
+    
+    
+    func setUserData() {
+        let image = UIImage(named: "\(UserDataService.instance.avatarName)")
+        let size  = CGSize(width: 20, height: 20)
+        let scaledImage =  image?.scaleImage(toSize: size)
+        self.tabBarController?.tabBar.items![2].image = scaledImage
+        self.tabBarController?.tabBar.items![2].selectedImage = scaledImage
     }
     
     @IBAction func segmentControl(_ sender: Any) {

@@ -12,37 +12,34 @@ import  Moya
 class UserVC: UIViewController, ChangeAvatarDelegate, FavoriteMoviesDelegate {
   
   
-    
-   
-    
-   
-
     @IBOutlet weak var tableView: UITableView!
     let nib = UINib(nibName: "UserCell", bundle: nil)
     let nibCollection = UINib(nibName: "UserCollectionView", bundle: nil)
     let providerAccount = MoyaProvider<AccountService>()
-    var accounts : Account?
+    private var accounts : Account?
     var movies = [Movie]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(nib, forCellReuseIdentifier: "UserCell")
-        tableView.register(nibCollection, forCellReuseIdentifier: "UserCollectionView")
+        setUpView()
         loadAccountDetail()
         loadFavoriteMovies()
-       navigationItem.setHidesBackButton(true, animated: false)
+        LoadingIndicator().showActivityIndicator(uiView: self.view)
+    }
+    
+    
+   
+    
+    
+    func setUpView() {
+        navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.title = "Пользователь"
         let backItem = UIBarButtonItem()
         backItem.title = "Назад"
         navigationItem.backBarButtonItem = backItem
-        
-        
-//        let userVC = UserVC()
-//        tabBarController?.viewControllers?.append(userVC)
-//        tabBarController?.viewControllers?.remove(at: 2)
-        
-        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(nib, forCellReuseIdentifier: "UserCell")
+        tableView.register(nibCollection, forCellReuseIdentifier: "UserCollectionView")
         
     }
     
@@ -65,6 +62,33 @@ class UserVC: UIViewController, ChangeAvatarDelegate, FavoriteMoviesDelegate {
     
     
     
+    @IBAction func logOutBtnPressed(_ sender: Any) {
+        keychain["username"] = nil
+        keychain["password"] = nil
+        UserDataService.instance.setSessionId(sessionId: "")
+        let image = UIImage(named: "man")
+        self.tabBarController?.tabBar.items![2].image = image
+        self.tabBarController?.tabBar.items![2].selectedImage = image
+        deleteSession()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "AccountVC") as! AccountVC
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    
+    
+    func deleteSession() {
+        providerAccount.request(.deleteSession) { (result) in
+            switch result {
+            case .success(let response):
+                print("Section deleted: \(response)")
+            case .failure(let error):
+                print("Error in delete: \(error)")
+            }
+        }
+        
+    }
     
    
     
@@ -147,10 +171,15 @@ extension UserVC: UITableViewDelegate, UITableViewDataSource {
                 if UserDataService.instance.avatarName == "" {
                     cell.avatarImg.image = #imageLiteral(resourceName: "man-2")
                 } else {
-                    cell.avatarImg.image = UIImage(named: "\(UserDataService.instance.avatarName)")!
+                    let image = UIImage(named: "\(UserDataService.instance.avatarName)")!
+                    cell.avatarImg.image = image
                     cell.avatarImg.layer.backgroundColor = UIColor.lightGray.cgColor
                     cell.avatarImg.layer.cornerRadius = 10
                     cell.avatarImg.clipsToBounds = true
+                    let size  = CGSize(width: 20, height: 20)
+                    let scaledImage =  image.scaleImage(toSize: size)
+                    self.tabBarController?.tabBar.items![2].image = scaledImage
+                    self.tabBarController?.tabBar.items![2].selectedImage = scaledImage
                 }
                
                 return cell
@@ -200,12 +229,22 @@ extension UserVC : UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieDetailCollectionCell", for: indexPath) as? MovieDetailCollectionCell {
                 let movie = movies[indexPath.row]
                 cell.configureCellForSimilarMovies(movie: movie)
+                LoadingIndicator().hideActivityIndicator(uiView: self.view)
                 return cell
             }
         default:
             return UICollectionViewCell()
         }
          return UICollectionViewCell()
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MovieDetailVC") as! MovieDetailVC
+        vc.movieDetail = movies[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

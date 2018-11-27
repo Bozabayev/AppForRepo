@@ -42,6 +42,7 @@
 		915667F621941B15004AF88A /* MovieGenresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915667F421941B15004AF88A /* MovieGenresCell.swift */; };
 		915667F721941B15004AF88A /* MovieGenresCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915667F521941B15004AF88A /* MovieGenresCell.xib */; };
 		915667F921942880004AF88A /* MovieDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915667F821942880004AF88A /* MovieDetailVC.swift */; };
+		916E07C721AD0C5A00FAE71F /* TMDbAppData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 916E07C521AD0C5A00FAE71F /* TMDbAppData.xcdatamodeld */; };
 		91ADDE4E21ABB374008A9DC4 /* UserCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ADDE4C21ABB374008A9DC4 /* UserCollectionView.swift */; };
 		91ADDE4F21ABB374008A9DC4 /* UserCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ADDE4D21ABB374008A9DC4 /* UserCollectionView.xib */; };
 		91ADDE5221ABB393008A9DC4 /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ADDE5021ABB393008A9DC4 /* UserCollectionViewCell.swift */; };
@@ -102,6 +103,7 @@
 		915667F421941B15004AF88A /* MovieGenresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenresCell.swift; sourceTree = "<group>"; };
 		915667F521941B15004AF88A /* MovieGenresCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieGenresCell.xib; sourceTree = "<group>"; };
 		915667F821942880004AF88A /* MovieDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailVC.swift; sourceTree = "<group>"; };
+		916E07C621AD0C5A00FAE71F /* TMDbAppData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TMDbAppData.xcdatamodel; sourceTree = "<group>"; };
 		91ADDE4C21ABB374008A9DC4 /* UserCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionView.swift; sourceTree = "<group>"; };
 		91ADDE4D21ABB374008A9DC4 /* UserCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCollectionView.xib; sourceTree = "<group>"; };
 		91ADDE5021ABB393008A9DC4 /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				910867872191626700A28568 /* Assets.xcassets */,
 				910867892191626700A28568 /* LaunchScreen.storyboard */,
 				9108678C2191626700A28568 /* Info.plist */,
+				916E07C521AD0C5A00FAE71F /* TMDbAppData.xcdatamodeld */,
 			);
 			path = TMDb.iOS;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TMDb.iOS/Pods-TMDb.iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -431,6 +435,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -483,6 +488,7 @@
 				915667F921942880004AF88A /* MovieDetailVC.swift in Sources */,
 				91ADDE4E21ABB374008A9DC4 /* UserCollectionView.swift in Sources */,
 				915667E92192D7CD004AF88A /* MainTabBarViewController.swift in Sources */,
+				916E07C721AD0C5A00FAE71F /* TMDbAppData.xcdatamodeld in Sources */,
 				911E4A1521A3FA21004BE962 /* MovieDetailCollectionCell.swift in Sources */,
 				91D0A51721A6DD39002B1409 /* Account.swift in Sources */,
 				91D0A51521A6CD8F002B1409 /* RoundedButton.swift in Sources */,
@@ -703,6 +709,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		916E07C521AD0C5A00FAE71F /* TMDbAppData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				916E07C621AD0C5A00FAE71F /* TMDbAppData.xcdatamodel */,
+			);
+			currentVersion = 916E07C621AD0C5A00FAE71F /* TMDbAppData.xcdatamodel */;
+			path = TMDbAppData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 910867722191626600A28568 /* Project object */;
 }

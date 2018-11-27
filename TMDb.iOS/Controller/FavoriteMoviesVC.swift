@@ -21,7 +21,7 @@ class FavoriteMoviesVC: UIViewController {
         collectionView.dataSource = self
         collectionView.register(nib, forCellWithReuseIdentifier: "MovieGenresCell")
         loadFavoriteMovies()
-        navigationController?.title = "Favorite Movies"
+        navigationItem.title = "Favorite Movies"
         
     }
     

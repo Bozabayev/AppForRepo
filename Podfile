@@ -12,5 +12,6 @@ pod 'Moya'
 pod 'ObjectMapper'
  pod 'SwiftyJSON'
  pod 'SDWebImage'
+ pod 'KeychainAccess'
 
 end

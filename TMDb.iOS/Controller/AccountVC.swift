@@ -8,30 +8,29 @@
 
 import UIKit
 import Moya
+import  KeychainAccess
+
 
 fileprivate enum SegmentType {
         case authorization
         case registration
 }
 
-//var sessionId : String? = ""
+public let keychain = Keychain(service: "asd")
+
 
 
 class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegate, CreateAccButtonTapDelegate, LoginTextDelegate {
     
     
    
-    
-   
-   
-    
-    
     @IBOutlet weak var segmentedController: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     fileprivate let authorizationNib = UINib(nibName: "AccountAuthorizationCell", bundle: nil)
     fileprivate let registrationNib = UINib(nibName: "AccountRegisterCell", bundle: nil)
     fileprivate let webNib = UINib(nibName: "AccountRegisterWebCell", bundle: nil)
     let alert = UIAlertController(title: "Ooops", message: "Invalid data", preferredStyle: UIAlertController.Style.alert)
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
     var timer = Timer()
     fileprivate let provider = MoyaProvider<AccountService>()
     fileprivate var accounts : Account?
@@ -51,7 +50,6 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
        alert.view.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         navigationItem.title = "Аккаунт"
-        
     }
     
     @IBAction func segmentSwitched(_ sender: Any) {
@@ -89,6 +87,7 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
     func loginTapButton() {
         tableView.reloadData()
         requestToken()
+
         
         
     }
@@ -157,6 +156,8 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
                   let  sessionId = jsonData["session_id"] as? String
                     UserDataService.instance.setSessionId(sessionId: sessionId!)
                     if UserDataService.instance.sessionID != "" {
+                        keychain["username"] = strongSelf.accounts?.username!
+                        keychain["password"] = strongSelf.accounts?.password!
                         strongSelf.pushView()
                     } else {
                         strongSelf.present(strongSelf.alert, animated: true, completion: nil)
@@ -177,6 +178,7 @@ class AccountVC: UIViewController, CreateAccTextDelegate , LoginButtonTapDelegat
         navigationController?.pushViewController(vc, animated: true)
         
     }
+    
     
     
   

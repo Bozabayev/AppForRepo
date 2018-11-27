@@ -366,7 +366,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CUr-kS-wkd">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="597"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="EaD-my-npA">
@@ -379,13 +379,35 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iX9-B8-ymc" customClass="RoundedButton" customModule="TMDb_iOS" customModuleProvider="target">
+                                <rect key="frame" x="112.5" y="625" width="150" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="NTe-Jy-7dv"/>
+                                    <constraint firstAttribute="height" constant="30" id="skK-Dd-9rz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="logOutBtnPressed:" destination="VWc-b2-JcY" eventType="touchUpInside" id="cYw-cc-v0c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="iX9-B8-ymc" firstAttribute="centerX" secondItem="x7S-02-Rw1" secondAttribute="centerX" id="4C9-XL-UoW"/>
+                            <constraint firstItem="iX9-B8-ymc" firstAttribute="top" secondItem="CUr-kS-wkd" secondAttribute="bottom" constant="8" id="7y8-py-0Nt"/>
                             <constraint firstItem="gnO-lQ-OY0" firstAttribute="trailing" secondItem="CUr-kS-wkd" secondAttribute="trailing" id="HdT-sE-A7Q"/>
                             <constraint firstItem="CUr-kS-wkd" firstAttribute="top" secondItem="gnO-lQ-OY0" secondAttribute="top" id="Z8V-BB-ys9"/>
                             <constraint firstItem="CUr-kS-wkd" firstAttribute="leading" secondItem="gnO-lQ-OY0" secondAttribute="leading" id="ph8-Ki-MTV"/>
-                            <constraint firstItem="gnO-lQ-OY0" firstAttribute="bottom" secondItem="CUr-kS-wkd" secondAttribute="bottom" id="xok-xJ-3ti"/>
+                            <constraint firstItem="gnO-lQ-OY0" firstAttribute="bottom" secondItem="CUr-kS-wkd" secondAttribute="bottom" constant="50" id="xok-xJ-3ti"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gnO-lQ-OY0"/>
                     </view>

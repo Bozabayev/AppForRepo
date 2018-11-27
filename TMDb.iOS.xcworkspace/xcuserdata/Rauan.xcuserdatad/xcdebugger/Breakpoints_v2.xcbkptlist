@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TMDb.iOS/Controller/MoviesByGenresVC.swift"
-            timestampString = "564845280.241554"
+            timestampString = "564999645.010607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TMDb.iOS/Controller/MoviesByGenresVC.swift"
-            timestampString = "564845280.241639"
+            timestampString = "564999645.010677"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
@@ -170,12 +170,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TMDb.iOS/Controller/AccountVC.swift"
-            timestampString = "564904508.2017159"
+            timestampString = "565001247.102147"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "tableView(_:heightForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -202,7 +202,7 @@
                   moduleName = "TMDb.iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Rauan/Desktop/AppForRepo/TMDb.iOS/Controller/MovieDetailVC.swift"
-                  timestampString = "564904388.566347"
+                  timestampString = "564999802.995881"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
@@ -217,7 +217,7 @@
                   moduleName = "TMDb.iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Rauan/Desktop/AppForRepo/TMDb.iOS/Controller/MovieDetailVC.swift"
-                  timestampString = "564904388.56838"
+                  timestampString = "564999802.9979"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "104"
@@ -233,24 +233,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TMDb.iOS/Controller/UserVC.swift"
-            timestampString = "564904508.2018"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TMDb.iOS/Controller/FavoriteMoviesVC.swift"
-            timestampString = "564904508.2021199"
+            timestampString = "565001353.94006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
@@ -266,12 +250,107 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TMDb.iOS/Controller/FavoriteMoviesVC.swift"
-            timestampString = "564904508.202162"
+            timestampString = "565001353.940142"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "18"
             endingLineNumber = "18"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TMDb.iOS/Controller/AccountVC.swift"
+            timestampString = "565001247.10229"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "requestSessionId()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Result.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in TMDb_iOS.AccountVC.requestSessionId() -&gt; ()"
+                  moduleName = "TMDb.iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Rauan/Desktop/AppForRepo/TMDb.iOS/Controller/AccountVC.swift"
+                  timestampString = "564999803.028263"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
+                  offsetFromSymbolStart = "2657">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Result.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in TMDb_iOS.AccountVC.requestSessionId() -&gt; ()"
+                  moduleName = "TMDb.iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Rauan/Desktop/AppForRepo/TMDb.iOS/Controller/AccountVC.swift"
+                  timestampString = "564999803.031008"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
+                  offsetFromSymbolStart = "3697">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Result.Result&lt;Moya.Response, Moya.MoyaError&gt;) -&gt; () in TMDb_iOS.AccountVC.requestSessionId() -&gt; ()"
+                  moduleName = "TMDb.iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Rauan/Desktop/AppForRepo/TMDb.iOS/Controller/AccountVC.swift"
+                  timestampString = "564999803.032769"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
+                  offsetFromSymbolStart = "3764">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TMDb.iOS/Controller/UserVC.swift"
+            timestampString = "565001353.940217"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "loadAccountDetail()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TMDb.iOS/Controller/UserVC.swift"
+            timestampString = "565001353.940617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

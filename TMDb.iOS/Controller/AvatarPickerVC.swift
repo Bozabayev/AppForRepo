@@ -49,7 +49,7 @@ class AvatarPickerVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         tabBarItem.image = UIImage(named: "\(UserDataService.instance.avatarName)")
         let image = UIImage(named: "\(UserDataService.instance.avatarName)")
         let size  = CGSize(width: 20, height: 20)
-        
+        keychain["avatarName"] = UserDataService.instance.avatarName
         let scaledImage =  image?.scaleImage(toSize: size)
         
         self.tabBarController?.tabBar.items![2].image = scaledImage

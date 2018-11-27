@@ -12,7 +12,8 @@ import UIKit
 
 class TransitionVC: UIViewController {
 
-    
+    let username = keychain["username"]
+    let password = keychain["password"]
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class TransitionVC: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil )
         let accountVC = storyboard.instantiateViewController(withIdentifier: "AccountVC")
         let userVC = storyboard.instantiateViewController(withIdentifier: "UserVC")
-        if UserDataService.instance.sessionID == "" {
+        if username == nil && password == nil {
             self.navigationController?.pushViewController(accountVC, animated: false)
         } else  {
             self.navigationController?.pushViewController(userVC, animated: false)

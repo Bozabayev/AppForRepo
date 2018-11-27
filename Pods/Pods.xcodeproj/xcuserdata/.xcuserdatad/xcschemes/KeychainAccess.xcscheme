@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "53D9C45EE17ACF7487B96028DD943B1A"
-               BlueprintName = "Pods-TMDb.iOS"
+               BlueprintIdentifier = "8905DB6521F8FDC34752B69DEE3FDEB7"
+               BlueprintName = "KeychainAccess"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Pods-TMDb.iOS.framework">
+               BuildableName = "KeychainAccess.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

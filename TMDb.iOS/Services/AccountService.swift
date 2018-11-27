@@ -21,6 +21,7 @@ enum AccountService {
     case accountDetail(sessionID: String)
     case getFavoriteMovies(accountID: Int)
     case markFavoriteMovie(accountID: Int)
+    case deleteSession
 }
 
 
@@ -41,6 +42,8 @@ extension AccountService : TargetType {
             return "account/\(accountID)/favorite/movies"
         case .markFavoriteMovie(let accountID):
             return "account/\(accountID)/favorite"
+        case .deleteSession:
+            return "authentication/session"
             
         }
     }
@@ -51,6 +54,8 @@ extension AccountService : TargetType {
             return .get
         case .createSession, .requestLoginToken, .markFavoriteMovie :
             return .post
+        case .deleteSession:
+            return .delete
         }
     }
     
@@ -72,6 +77,8 @@ extension AccountService : TargetType {
             return .requestParameters(parameters: ["api_key" : api_key, "session_id" : UserDataService.instance.sessionID], encoding: URLEncoding.default)
         case .markFavoriteMovie:
             return .requestCompositeParameters(bodyParameters: ["media_type" : "movie", "media_id" : UserDataService.instance.movieID, "favorite" : true], bodyEncoding: JSONEncoding.default, urlParameters: ["api_key" : api_key, "session_id" : UserDataService.instance.sessionID])
+        case .deleteSession:
+            return .requestCompositeParameters(bodyParameters: ["session_id" : "\(UserDataService.instance.sessionID)"], bodyEncoding: JSONEncoding.default, urlParameters: ["api_key" : api_key])
             
         }
     }
@@ -80,7 +87,7 @@ extension AccountService : TargetType {
         switch self {
         case .markFavoriteMovie:
             return ["Content-Type": "application/json; charset=utf-8"]
-        case .accountDetail, .createSession, .getFavoriteMovies, .requestLoginToken, .requestToken:
+        case .accountDetail, .createSession, .getFavoriteMovies, .requestLoginToken, .requestToken, .deleteSession:
             return nil
         }
     }
