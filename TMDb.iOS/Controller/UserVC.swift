@@ -127,6 +127,7 @@ class UserVC: UIViewController, ChangeAvatarDelegate, FavoriteMoviesDelegate {
                     let array = jsonData["results"] as! [[String : Any]]
                     strongSelf.movies = array.map({Movie(JSON: $0)!})
                     strongSelf.tableView.reloadData()
+                    LoadingIndicator().hideActivityIndicator(uiView: strongSelf.view)
                 } catch {
                     print("Mapping error")
                     
@@ -172,7 +173,7 @@ extension UserVC: UITableViewDelegate, UITableViewDataSource {
                 } else {
                     let image = UIImage(named: "\(UserDataService.instance.avatarName)")!
                     cell.avatarImg.image = image
-                    cell.avatarImg.layer.backgroundColor = UIColor.lightGray.cgColor
+                    cell.avatarImg.layer.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
                     cell.avatarImg.layer.cornerRadius = 10
                     cell.avatarImg.clipsToBounds = true
                     let size  = CGSize(width: 20, height: 20)
@@ -230,7 +231,6 @@ extension UserVC : UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieDetailCollectionCell", for: indexPath) as? MovieDetailCollectionCell {
                 let movie = movies[indexPath.row]
                 cell.configureCellForSimilarMovies(movie: movie)
-                LoadingIndicator().hideActivityIndicator(uiView: self.view)
                 return cell
             }
         default:

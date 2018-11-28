@@ -50,17 +50,17 @@
                         </constraints>
                     </stackView>
                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUV-5d-NkW" customClass="RoundedButton" customModule="TMDb_iOS" customModuleProvider="target">
-                        <rect key="frame" x="304" y="21" width="32" height="32"/>
+                        <rect key="frame" x="286" y="21" width="50" height="50"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="32" id="N1A-bO-1a6"/>
-                            <constraint firstAttribute="width" constant="32" id="e52-Ag-GI9"/>
+                            <constraint firstAttribute="width" constant="50" id="Pa4-6p-tz0"/>
+                            <constraint firstAttribute="height" constant="50" id="nOt-rO-v0c"/>
                         </constraints>
-                        <state key="normal" image="star-4"/>
-                        <state key="selected" image="star-3"/>
+                        <state key="normal" image="star-empty2"/>
+                        <state key="selected" image="star-black2"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="17"/>
+                                <real key="value" value="25"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
@@ -88,7 +88,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="star-3" width="25.600000381469727" height="25.600000381469727"/>
-        <image name="star-4" width="25.600000381469727" height="25.600000381469727"/>
+        <image name="star-black2" width="200" height="200"/>
+        <image name="star-empty2" width="200" height="200"/>
     </resources>
 </document>

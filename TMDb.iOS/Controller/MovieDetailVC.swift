@@ -39,13 +39,11 @@ class MovieDetailVC: UIViewController, FavoriteMovieDelegate {
         tableView.register(nibCollection, forCellReuseIdentifier: "MovieDetailCollection")
         loadMovieCast()
         loadSimilarMovies()
-        loadFavoriteMovies()
         LoadingIndicator().showActivityIndicator(uiView: self.view)
         navigationItem.title = "Описание фильма"
         let backItem = UIBarButtonItem()
         backItem.title = "Назад"
         navigationItem.backBarButtonItem = backItem
-        
         
     }
     
@@ -56,10 +54,13 @@ class MovieDetailVC: UIViewController, FavoriteMovieDelegate {
     
     
     func favoriteMovie() {
-        if favoriteBtn == true{
-        markFavoriteMovie()
-        } else {
+        LoadingIndicator().showActivityIndicator(uiView: self.view)
+        if favoriteBtn == true {
             removeFavoriteMovie()
+             favoriteBtn = false
+        } else {
+            markFavoriteMovie()
+            favoriteBtn = true
         }
     }
 
@@ -114,13 +115,15 @@ class MovieDetailVC: UIViewController, FavoriteMovieDelegate {
     func markFavoriteMovie() {
         guard let id = movieDetail?.id else {return}
         UserDataService.instance.setMovieId(movieId: id)
-        providerAccount.request(.markFavoriteMovie(accountID: UserDataService.instance.accountID)) { (result) in
+        providerAccount.request(.markFavoriteMovie(accountID: UserDataService.instance.accountID)) { [weak self](result) in
+            guard let strongSelf = self else {return}
             switch result {
             case .success(let response):
                 do {
                     let jsonData = try response.mapJSON() as! [String : Any]
                     print(jsonData["status_message"]!)
-                    
+                    UserDataService.instance.setFavoriteMoviesId(favoriteMoviesID: (strongSelf.movieDetail?.id)!)
+                    strongSelf.tableView.reloadData()
                     
                 } catch {
                     print("Mapping error")
@@ -135,44 +138,21 @@ class MovieDetailVC: UIViewController, FavoriteMovieDelegate {
     func removeFavoriteMovie() {
         guard let id = movieDetail?.id else {return}
         UserDataService.instance.setMovieId(movieId: id)
-        providerAccount.request(.removeFavoriteMovie(accountID: UserDataService.instance.accountID)) { (result) in
+        providerAccount.request(.removeFavoriteMovie(accountID: UserDataService.instance.accountID)) { [weak self](result) in
+            guard let strongSelf = self else {return}
             switch result {
             case .success(let response):
                 do {
                     let jsonData = try response.mapJSON() as! [String : Any]
                     print(jsonData["status_message"]!)
-                    
+                    UserDataService.instance.removeFavoriteMoviesId(favoriteMoviesId: (strongSelf.movieDetail?.id)!)
+                    strongSelf.tableView.reloadData()
                     
                 } catch {
                     print("Mapping error")
                 }
             case .failure(let error):
                 print("error: \(error)")
-            }
-        }
-    }
-    
-    func loadFavoriteMovies() {
-        providerAccount.request(.getFavoriteMovies(accountID: UserDataService.instance.accountID)) { [weak self](result) in
-            guard let strongSelf = self else {return}
-            switch result {
-            case .success(let response):
-                do {
-                    let jsonData = try response.mapJSON() as! [String: Any]
-                    let array = jsonData["results"] as! [[String : Any]]
-                    strongSelf.favoriteMovies = array.map({Movie(JSON: $0)!})
-                    
-                    for movie in strongSelf.favoriteMovies{
-                        guard let id = movie.id else {return}
-                        strongSelf.favoriteMoviesId.append(id)
-                    }
-                    strongSelf.tableView.reloadData()
-                } catch {
-                    print("Mapping error")
-                    
-                }
-            case .failure(let error):
-                print("Error: \(error)")
             }
         }
     }
@@ -203,14 +183,16 @@ extension MovieDetailVC : UITableViewDelegate, UITableViewDataSource {
                     firstCell.favoriteBtn.isHidden = true
                 }
                 
-                for id in favoriteMoviesId {
+                for id in UserDataService.instance.favoriteMoviesID {
                     if movieDetail?.id == id {
                         firstCell.favoriteBtn.isSelected = true
                         self.favoriteBtn = true
+                        LoadingIndicator().hideActivityIndicator(uiView: self.view)
                         break
                     } else {
                         firstCell.favoriteBtn.isSelected = false
                         self.favoriteBtn = false
+                        LoadingIndicator().hideActivityIndicator(uiView: self.view)
                     }
                 }
                 

@@ -13,37 +13,42 @@ class MainTabBarViewController: UITabBarController {
 
     
     let provider = MoyaProvider<AccountService>()
+    let providerAccount = MoyaProvider<AccountService>()
     let username = keychain["username"]
     let password = keychain["password"]
     let avatarName = keychain["avatarName"]
     let accountId = keychain["accountId"]
+    var favoriteMovies = [Movie]()
     var accounts : Account?
     var request_token = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
+        
+        
     }
-    
+  
     
     override func viewWillAppear(_ animated: Bool) {
         setUserData()
     }
     
     func setUserData() {
+        
+        if username == "Bozik" {
+            UserDataService.instance.setAvatarName(avatarName: avatarName!)
+        } 
+        
         if username != nil && password != nil {
             requestToken()
         } else {
             return
         }
         
-        if username == "Bozik" {
-            UserDataService.instance.setAvatarName(avatarName: avatarName!)
-        }
+       
         
-        if accountId != nil {
-            guard let id = accountId else {return}
-            UserDataService.instance.setAccountId(accountId: Int(id)!)
-        }
         
     }
     
@@ -87,15 +92,65 @@ class MainTabBarViewController: UITabBarController {
     
     
     func requestSessionId() {
-        provider.request(.createSession(request_token: request_token)) { (result) in
+        provider.request(.createSession(request_token: request_token)) { [weak self](result) in
+            guard let strongSelf = self else {return}
             switch result {
             case .success(let response):
                 do {
                     let jsonData = try response.mapJSON() as! [String : Any]
                     let  sessionId = jsonData["session_id"] as? String
                     UserDataService.instance.setSessionId(sessionId: sessionId!)
+                    strongSelf.loadAccountDetail()
                 } catch {
                     print("Moya Error")
+                }
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    
+    
+    func loadFavoriteMovies() {
+        providerAccount.request(.getFavoriteMovies(accountID: UserDataService.instance.accountID)) { [weak self] (result) in
+            guard let strongSelf = self else {return}
+            switch result {
+            case .success(let response):
+                do {
+                    let jsonData = try response.mapJSON() as! [String: Any]
+                    let array = jsonData["results"] as! [[String : Any]]
+                   
+                    strongSelf.favoriteMovies = array.map({Movie(JSON: $0)!})
+                    
+                    for movie in strongSelf.favoriteMovies{
+                        guard let id = movie.id else {return}
+                        UserDataService.instance.setFavoriteMoviesId(favoriteMoviesID: id)
+                    }
+                } catch {
+                    print("Mapping error")
+                    
+                }
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    func loadAccountDetail() {
+        providerAccount.request(.accountDetail(sessionID: UserDataService.instance.sessionID)) { [weak self](result) in
+            guard let strongSelf = self else {return}
+            switch result {
+            case .success(let response):
+                do {
+                    let jsonData = try response.mapJSON() as! [String: Any]
+                    strongSelf.accounts = Account(JSON: jsonData)
+                    guard let id = strongSelf.accounts?.id else {return}
+                    UserDataService.instance.setAccountId(accountId: id)
+                    strongSelf.loadFavoriteMovies()
+                    
+                } catch {
+                    print("Mapping eror")
                 }
             case .failure(let error):
                 print("Error: \(error)")

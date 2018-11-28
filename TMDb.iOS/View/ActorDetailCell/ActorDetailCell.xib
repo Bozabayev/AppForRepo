@@ -32,8 +32,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Biography" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHM-dU-1uw">
-                        <rect key="frame" x="8" y="396" width="315" height="20.5"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <rect key="frame" x="12" y="396" width="307" height="20.5"/>
+                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -43,11 +43,11 @@
                     <constraint firstItem="vEb-kE-awU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="Kps-cD-CBe"/>
                     <constraint firstItem="5gj-ya-Q3v" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="P5b-k9-UD3"/>
                     <constraint firstAttribute="trailingMargin" secondItem="vEb-kE-awU" secondAttribute="trailing" constant="32" id="PKd-rX-2Gv"/>
-                    <constraint firstAttribute="trailing" secondItem="hHM-dU-1uw" secondAttribute="trailing" constant="8" id="chE-ZE-lfV"/>
+                    <constraint firstAttribute="trailing" secondItem="hHM-dU-1uw" secondAttribute="trailing" constant="12" id="chE-ZE-lfV"/>
                     <constraint firstItem="vEb-kE-awU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="32" id="fdR-3t-VU7"/>
                     <constraint firstItem="5gj-ya-Q3v" firstAttribute="top" secondItem="vEb-kE-awU" secondAttribute="bottom" constant="8" id="o3t-vr-wz9"/>
                     <constraint firstItem="hHM-dU-1uw" firstAttribute="top" secondItem="5gj-ya-Q3v" secondAttribute="bottom" constant="8" id="pWO-g1-jfJ"/>
-                    <constraint firstItem="hHM-dU-1uw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="uVE-Rs-iEZ"/>
+                    <constraint firstItem="hHM-dU-1uw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="uVE-Rs-iEZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

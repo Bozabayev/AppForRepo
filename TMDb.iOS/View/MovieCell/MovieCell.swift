@@ -41,8 +41,11 @@ class MovieCell: UITableViewCell {
         movieTitle.text = title
         
         guard let rating = movie.vote_average else {return}
+        if rating == 0.0 {
+            ratingValue.text = "--"
+        } else {
         ratingValue.text = "\(String(describing: rating))"
-        
+        }
         let overview = movie.overview
         overviewLbl.text = overview
         

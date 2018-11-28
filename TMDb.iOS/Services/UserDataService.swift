@@ -37,9 +37,19 @@ class UserDataService {
     }
     
     
-    func setFavoriteMoviesId(favoriteMoviesID: [Int]) {
-        self.favoriteMoviesID.append(contentsOf: favoriteMoviesID)
+    func setFavoriteMoviesId(favoriteMoviesID: Int) {
+        self.favoriteMoviesID.append(favoriteMoviesID)
     }
+    
+    
+    func removeFavoriteMoviesId(favoriteMoviesId: Int) {
+        
+        self.favoriteMoviesID.removeAll(where: {$0 == favoriteMoviesId})
+    }
+    
+    
+    
+   
     
     
 }

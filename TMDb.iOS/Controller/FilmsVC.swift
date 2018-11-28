@@ -44,8 +44,9 @@ class FilmsVC: UIViewController{
         }
     }
     var imageView : UIImageView?
-    let tap = UITapGestureRecognizer(target: self, action: #selector(FilmsVC.handleTap(_:)))
+    let tap = UITapGestureRecognizer(target: self, action: #selector(FilmsVC.handleTap))
     let nib = UINib(nibName: "MovieCell", bundle: nil)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,11 +63,18 @@ class FilmsVC: UIViewController{
     
     
     func setUserData() {
-        let image = UIImage(named: "\(UserDataService.instance.avatarName)")
+        
+        if UserDataService.instance.avatarName == "" {
+            let image = UIImage(named: "man")
+            self.tabBarController?.tabBar.items![2].image = image
+            self.tabBarController?.tabBar.items![2].selectedImage = image
+        } else {
+            let image = UIImage(named: "\(UserDataService.instance.avatarName)")
         let size  = CGSize(width: 20, height: 20)
         let scaledImage =  image?.scaleImage(toSize: size)
         self.tabBarController?.tabBar.items![2].image = scaledImage
         self.tabBarController?.tabBar.items![2].selectedImage = scaledImage
+        }
     }
     
     @IBAction func segmentControl(_ sender: Any) {
@@ -81,14 +89,17 @@ class FilmsVC: UIViewController{
     }
     @IBAction func searchBtnPressed(_ sender: Any) {
         setSearchBar()
+       
     }
     
     
    
     
-    @objc func handleTap(_ recognizer: UITapGestureRecognizer) {
+    @objc func handleTap( recognizer: UITapGestureRecognizer) {
         navigationItem.titleView = nil
         navigationItem.rightBarButtonItem = searchBtn
+          let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar!.endEditing(true)
     }
     
     
@@ -246,16 +257,19 @@ extension FilmsVC: UISearchBarDelegate {
         
         searchBar.showsCancelButton = true
         navigationItem.titleView = searchBar
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar!.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        textFieldInsideSearchBar!.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        textFieldInsideSearchBar!.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         searchBtn = navigationItem.rightBarButtonItem
         navigationItem.rightBarButtonItem = nil
         searchBar.becomeFirstResponder()
-        self.view.addGestureRecognizer(tap)
+
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
        navigationItem.titleView = nil
        navigationItem.rightBarButtonItem = searchBtn
-        self.view.removeGestureRecognizer(tap)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -281,5 +295,10 @@ extension FilmsVC: UISearchBarDelegate {
     @objc func removeSearchMovie() {
         searchingMovies.removeAll()
     }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        navigationItem.titleView = nil
+        navigationItem.rightBarButtonItem = searchBtn
+    }
+    
     
 }

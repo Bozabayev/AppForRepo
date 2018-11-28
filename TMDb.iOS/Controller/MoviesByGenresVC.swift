@@ -32,8 +32,7 @@ class MoviesByGenresVC: UIViewController {
         let backItem = UIBarButtonItem()
         backItem.title = "Назад"
         navigationItem.backBarButtonItem = backItem
-
-        // Do any additional setup after loading the view.
+        LoadingIndicator().showActivityIndicator(uiView: self.view)
     }
     
     private func loadMoviesByGenreId() {
@@ -48,6 +47,7 @@ class MoviesByGenresVC: UIViewController {
                     let array = jsonData["results"] as! [[String: Any]]
                     strongSelf.movies += array.map({Movie(JSON: $0)!})
                     strongSelf.collectionView.reloadData()
+                    LoadingIndicator().hideActivityIndicator(uiView: strongSelf.view)
                 } catch {
                     print("error")
                 }

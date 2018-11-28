@@ -29,6 +29,7 @@ class GenresVC: UIViewController {
         loadGenres()
         self.tableView.register(nib, forCellReuseIdentifier: "genreCell")
         navigationItem.rightBarButtonItem = nil
+        LoadingIndicator().showActivityIndicator(uiView: self.view)
     }
     
     
@@ -67,6 +68,7 @@ extension GenresVC: UITableViewDataSource, UITableViewDelegate {
       if  let cell = tableView.dequeueReusableCell(withIdentifier: "genreCell") as? GenreCell {
             let genre = self.genres[indexPath.row]
             cell.configureCell(genre: genre)
+        LoadingIndicator().hideActivityIndicator(uiView: self.view)
         return cell
       } else {
         return UITableViewCell()

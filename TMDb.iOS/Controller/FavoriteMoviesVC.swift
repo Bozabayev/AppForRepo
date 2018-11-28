@@ -22,7 +22,13 @@ class FavoriteMoviesVC: UIViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: "MovieGenresCell")
         loadFavoriteMovies()
         navigationItem.title = "Favorite Movies"
-        
+        LoadingIndicator().showActivityIndicator(uiView: self.view)
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        loadFavoriteMovies()
+//        LoadingIndicator().showActivityIndicator(uiView: self.view)
     }
     
 
@@ -37,6 +43,7 @@ class FavoriteMoviesVC: UIViewController {
                     let array = jsonData["results"] as! [[String : Any]]
                     strongSelf.movies = array.map({Movie(JSON: $0)!})
                     strongSelf.collectionView.reloadData()
+                    LoadingIndicator().hideActivityIndicator(uiView: strongSelf.view)
                 } catch {
                     print("Mapping error")
                     
