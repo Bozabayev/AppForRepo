@@ -51,7 +51,8 @@ class CustomSegmentedControl: UIControl {
     }
     
     override func draw(_ rect: CGRect) {
-        layer.cornerRadius = frame.height / 2
+        layer.cornerRadius = 10
+        
     }
     
     
@@ -92,7 +93,7 @@ class CustomSegmentedControl: UIControl {
         
         let selectorWidth = frame.width / CGFloat(buttonTitles.count)
         selector = UIView(frame: CGRect(x: 0, y: 0, width: selectorWidth, height: frame.height))
-        selector.layer.cornerRadius = frame.height / 2
+        selector.layer.cornerRadius = 10
         selector.backgroundColor = selectorColor
         addSubview(selector)
         

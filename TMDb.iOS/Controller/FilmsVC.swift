@@ -24,7 +24,6 @@ class FilmsVC: UIViewController{
 
     @IBOutlet weak var customSegmentController: CustomSegmentedControl!
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
    
     @IBOutlet weak var tableView: UITableView!
     //MARK: Private variables
@@ -105,16 +104,7 @@ class FilmsVC: UIViewController{
     
     
     
-    @IBAction func segmentControl(_ sender: Any) {
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            movieType = .popular
-        case 1:
-            movieType = .upcoming
-        default:
-            movieType = .popular
-        }
-    }
+
     @IBAction func searchBtnPressed(_ sender: Any) {
         setSearchBar()
        
@@ -309,11 +299,11 @@ extension FilmsVC: UISearchBarDelegate {
             movieType = .searching
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(searchMovies), userInfo: query, repeats: false)
         }
-        if numberLbl == 0 && segmentedControl.selectedSegmentIndex == 0 {
+        if numberLbl == 0 && customSegmentController.selectedSegmentIndex == 0 {
             movieType = .popular
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(removeSearchMovie), userInfo: nil, repeats: false)
             
-        } else if numberLbl == 0 && segmentedControl.selectedSegmentIndex == 1 {
+        } else if numberLbl == 0 && customSegmentController.selectedSegmentIndex == 1 {
             movieType = .upcoming
             timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(removeSearchMovie), userInfo: nil, repeats: false)
         }
