@@ -56,22 +56,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ggj-f9-wPe">
-                                <rect key="frame" x="63.5" y="88" width="248" height="33"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="248" id="mQX-TP-aTN"/>
-                                    <constraint firstAttribute="height" constant="32" id="qIQ-T2-twj"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Популярное"/>
-                                    <segment title="Скоро на экранах"/>
-                                </segments>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="segmentControl:" destination="SKY-03-QEI" eventType="valueChanged" id="iOb-HI-Qbd"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="whw-ig-VWi">
                                 <rect key="frame" x="0.0" y="136" width="375" height="482"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,14 +71,43 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehV-D8-Rqw" customClass="CustomSegmentedControl" customModule="TMDb_iOS" customModuleProvider="target">
+                                <rect key="frame" x="42.5" y="80" width="290" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ECu-0R-a3I"/>
+                                    <constraint firstAttribute="width" constant="290" id="Hg9-HZ-QsH"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="commaSeparatedButtonTitles" value="Популярное,Скоро на экранах"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectorColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectorTextColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="customSegmentedControllerSwitched:" destination="SKY-03-QEI" eventType="valueChanged" id="iXo-t3-nb1"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="whw-ig-VWi" firstAttribute="top" secondItem="ggj-f9-wPe" secondAttribute="bottom" constant="16" id="31S-5p-UUA"/>
-                            <constraint firstItem="ggj-f9-wPe" firstAttribute="top" secondItem="roy-jr-SaJ" secondAttribute="top" constant="24" id="Nmh-Ij-flK"/>
+                            <constraint firstItem="ehV-D8-Rqw" firstAttribute="top" secondItem="roy-jr-SaJ" secondAttribute="top" constant="16" id="Ceu-kQ-4vZ"/>
                             <constraint firstItem="whw-ig-VWi" firstAttribute="leading" secondItem="roy-jr-SaJ" secondAttribute="leading" id="b3c-Wc-BKq"/>
                             <constraint firstItem="whw-ig-VWi" firstAttribute="trailing" secondItem="roy-jr-SaJ" secondAttribute="trailing" id="b4w-U5-29H"/>
-                            <constraint firstItem="ggj-f9-wPe" firstAttribute="centerX" secondItem="bnF-ze-sgL" secondAttribute="centerX" id="pPh-Lf-OYf"/>
+                            <constraint firstItem="whw-ig-VWi" firstAttribute="top" secondItem="ehV-D8-Rqw" secondAttribute="bottom" constant="16" id="l7d-fc-jEL"/>
+                            <constraint firstItem="ehV-D8-Rqw" firstAttribute="centerX" secondItem="bnF-ze-sgL" secondAttribute="centerX" id="xc3-G9-30V"/>
                             <constraint firstItem="whw-ig-VWi" firstAttribute="bottom" secondItem="roy-jr-SaJ" secondAttribute="bottom" id="yft-Bh-QAP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="roy-jr-SaJ"/>
@@ -107,7 +120,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="segmentedControl" destination="ggj-f9-wPe" id="pRv-uG-lLD"/>
+                        <outlet property="customSegmentController" destination="ehV-D8-Rqw" id="cg0-fd-uET"/>
                         <outlet property="tableView" destination="whw-ig-VWi" id="uQp-dg-6JA"/>
                     </connections>
                 </viewController>

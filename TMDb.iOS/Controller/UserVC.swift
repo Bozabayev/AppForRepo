@@ -60,6 +60,9 @@ class UserVC: UIViewController, ChangeAvatarDelegate, FavoriteMoviesDelegate {
     
     
     
+    
+    
+    
     @IBAction func logOutBtnPressed(_ sender: Any) {
         keychain["username"] = nil
         keychain["password"] = nil
@@ -69,6 +72,7 @@ class UserVC: UIViewController, ChangeAvatarDelegate, FavoriteMoviesDelegate {
         self.tabBarController?.tabBar.items![2].image = image
         self.tabBarController?.tabBar.items![2].selectedImage = image
         deleteSession()
+        NotificationCenter.default.post(name: USER_LOGOUT, object: nil)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "AccountVC") as! AccountVC
         navigationController?.pushViewController(vc, animated: true)

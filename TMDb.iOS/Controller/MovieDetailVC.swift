@@ -47,7 +47,9 @@ class MovieDetailVC: UIViewController, FavoriteMovieDelegate {
         
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
     
 
     
@@ -69,6 +71,7 @@ class MovieDetailVC: UIViewController, FavoriteMovieDelegate {
     func loadMovieCast() {
         guard let id = movieDetail?.id else {return}
         provider.request(.movieCast(movie_id: id)) { [weak self](result) in
+            
             guard let strongSelf = self else {return}
             switch result {
             case .success(let response):

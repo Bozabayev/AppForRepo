@@ -22,6 +22,7 @@ class FilmsVC: UIViewController{
     }
     
 
+    @IBOutlet weak var customSegmentController: CustomSegmentedControl!
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
    
@@ -58,9 +59,21 @@ class FilmsVC: UIViewController{
         self.tableView.register(nib, forCellReuseIdentifier: "movieCell")
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         setUserData()
+        setCustomSegmentController()
     }
     
     
+    
+    
+    
+    func setCustomSegmentController() {
+        customSegmentController.borderWidth = 1
+        customSegmentController.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        customSegmentController.commaSeparatedButtonTitles = "Популярное, Скоро на экранах"
+        customSegmentController.selectorColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        customSegmentController.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        customSegmentController.selectorTextColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    }
     
     func setUserData() {
         
@@ -76,6 +89,21 @@ class FilmsVC: UIViewController{
         self.tabBarController?.tabBar.items![2].selectedImage = scaledImage
         }
     }
+    
+    
+    
+    @IBAction func customSegmentedControllerSwitched(_ sender: CustomSegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            movieType = .popular
+        case 1:
+            movieType = .upcoming
+        default:
+            movieType = .popular
+        }
+    }
+    
+    
     
     @IBAction func segmentControl(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex {

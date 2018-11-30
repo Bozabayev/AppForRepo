@@ -23,12 +23,13 @@ class FavoriteMoviesVC: UIViewController {
         loadFavoriteMovies()
         navigationItem.title = "Favorite Movies"
         LoadingIndicator().showActivityIndicator(uiView: self.view)
+        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-//        loadFavoriteMovies()
-//        LoadingIndicator().showActivityIndicator(uiView: self.view)
+        loadFavoriteMovies()
+        collectionView.reloadData()
     }
     
 
